@@ -83,7 +83,7 @@
             exit();
         }
 
-        SendCodeToMail($mail, $vraag, $vraagID);
+        SendCodeToMail($mail, $vraag, $vraagID, $conn);
     }
 
     if(isset($_POST['submitCode'])){

@@ -7,13 +7,8 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-    function SendCodeToMail($SendMailTo, $vraag, $vraagID){
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $db = "fqa";
-        $conn = mysqli_connect($host, $username, $password, $db);
-
+    function SendCodeToMail($SendMailTo, $vraag, $vraagID, $conn){
+        
         echo "<script>alert('{$vraagID}')</script>";
 
         $mail = new PHPMailer();
