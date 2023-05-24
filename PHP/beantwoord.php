@@ -24,15 +24,15 @@
             echo "Je bent een admin";
         }
 
-        //get all questions that are not answered
-        $sql = "SELECT * FROM vragen WHERE status = 'Ingediend'";
+        //get all questions that are not answered in order of oldest to newest
+        $sql = "SELECT * FROM vragen WHERE status = 'Ingediend' ORDER BY 'id'";
         $result = mysqli_query($conn, $sql);
 
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
                 echo "<h1>" . $row['vraag'] . "</h1>";
                 echo "<p>" . $row['mail'] . "</p>";
-                echo "<a href='beantwoord.php?id=" . $row['id'] . "'>Beantwoord</a>";
+                echo "<a href='beantwoord.php?id=" . $row['ID'] . "'>Beantwoord</a>";
             }
         }else{
             echo "Geen vragen gevonden";
