@@ -6,37 +6,37 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-
-    function SendCodeToMail($SendMailTo, $vraag, $vraagID, $conn){
-        
-        echo "<script>alert('{$vraagID}')</script>";
-
+    
+    function SetMailUp($SendMailTo){
+        //set up the mail
         $mail = new PHPMailer();
-
 
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-
 
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
         $mail->Username = 'vanbriemenlucas@gmail.com';
         $mail->Password = 'bfyrldyjmdvrzryv'; /* DO NOT CHANGE THIS */
+        $mail->setFrom('vanbriemenlucas@gmail.com');
+        $mail->isHTML(true);
+        $mail->addAddress("{$SendMailTo}");
+
+
+        return $mail;
+    }
+
+    function SendCodeToMail($SendMailTo, $vraag, $vraagID, $conn){
+       
+        $mail = SetMailUp($SendMailTo);
 
         $mail->Subject = 'Test mail';
-        $mail->setFrom('vanbriemenlucas@gmail.com');
 
         // generate a 6 digit code for the user to enter
         $code = rand(100000, 999999);
-
-        $mail->isHTML(true);
-
         $mail->Body = "Bedankt voor je vraag: '{$vraag}'' <br> Je code is: '{$code}'";
-
-        $mail->addAddress("{$SendMailTo}");
-
 
         //get VraagID from database
         $sql = "SELECT vraagID FROM vragen WHERE vraag = '{$vraag}' AND mail = '{$SendMailTo}'";
@@ -66,13 +66,8 @@
         $mail->smtpClose();
     }
 
-    function SendLoginMail($SendMailTo){
-        $host = "localhost";
-        $username = "root";
-        $password = "";
-        $db = "fqa";
-        $conn = mysqli_connect($host, $username, $password, $db);
-
+    function SendLoginMail($SendMailTo, $conn){
+        
         $mail = new PHPMailer();        
 
         $mail->isSMTP();

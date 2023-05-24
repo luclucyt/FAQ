@@ -84,7 +84,7 @@
         $sql = "INSERT INTO users (ID, naam, mail, wachtwoord, admin, status) VALUES ('', '{$naam}', '{$mail}', '{$password}', '{$admin}', '0')";
         $result = mysqli_query($conn, $sql);
 
-        SendLoginMail($mail);
+        SendLoginMail($mail, $conn);
     }
 
     if(isset($_POST['userverify'])){
