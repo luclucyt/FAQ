@@ -1,5 +1,5 @@
 <?php 
-    include 'Root.php';
+    include 'root.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,11 +7,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Beantwoord FAQ || SD-lab</title>
 
     <!-- JS -->
     <script src="../JS/beantwoord.js" defer></script>
 </head>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="FAQ.php">FAQ</a></li>
+            <li><a href="login.php">Login</a></li>
+        </ul>
+    </nav>
+</header>
 
 <body>
     <?php
@@ -74,3 +83,6 @@
     ?>
 </body>
 </html>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+

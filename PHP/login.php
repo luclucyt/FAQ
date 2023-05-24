@@ -8,9 +8,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SDlab Login</title>
+    <title>Login FAQ || SD-lab</title>
 </head>
 
+<header>
+    <nav>
+        <ul>
+            <li><a href="FAQ.php">FAQ</a></li>
+            <li><a href="beantwoord.php">Docent?</a></li>
+        </ul>
+    </nav>
+</header>
 
 <body>
     <h1>Login</h1>
