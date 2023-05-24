@@ -1,12 +1,5 @@
-<?php
-    //change session length
-    ini_set('session.gc_maxlifetime', (3600 * 24 * 30 )); // 30 days
-    session_start();
-    
-    //hide all errors
-    //error_reporting(0);
-    include 'include/db.php';
-    include 'include/sendMail.php';
+<?php 
+    include 'Root.php';
 ?>
 
 <!DOCTYPE html>
@@ -124,6 +117,7 @@
             while($row = mysqli_fetch_assoc($result)){
                 $dbPassword = $row['wachtwoord'];
                 $userID = $row['ID'];
+                $userName = $row['naam'];
                 $status = $row['status'];
                 $admin = $row['admin'];
             }
@@ -131,6 +125,7 @@
             if($status == 1){
                 if($password == $dbPassword){
                     $_SESSION['userID'] = $userID;
+                    $_SESSION['userName'] = $userName;
                     echo "Je bent ingelogd";
 
                     if($admin == 1){
@@ -138,7 +133,6 @@
                     }else{
                         $_SESSION['admin'] = false;
                     }
-                    //header("Location: beantwoord.php");
                 }else{
                     echo "Wachtwoord is niet correct";
                 }
