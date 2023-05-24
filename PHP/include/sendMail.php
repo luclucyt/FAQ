@@ -130,4 +130,11 @@
         $mail->smtpClose();
     }
 
+    function SendAnwerToMail($SendMailTo, $vraag, $antwoord){
+        $mail = new PHPMailer();
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+    }
 ?>
