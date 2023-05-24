@@ -1,0 +1,17 @@
+header{
+    position: absolute;
+    left: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+}
+
+#form-submit-new-wrapper *{
+    width: 25vw;
+    height: 5vh;
+
+    margin: 0.5vh 0;
+    box-sizing: border-box;
+}
