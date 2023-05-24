@@ -4,7 +4,7 @@
     session_start();
     
     //hide all errors
-    error_reporting(0);
+    //error_reporting(0);
     include 'include/db.php';
     include 'include/sendMail.php';
 ?>
