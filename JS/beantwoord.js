@@ -13,6 +13,16 @@ beantwoordButtons.forEach(function (button) {
         antwoordIdInput.setAttribute('name', 'vraagID');
         antwoordIdInput.setAttribute('value', vraagId);
 
+        let antwoordIsPublicLabel = document.createElement('label');
+        antwoordIsPublicLabel.setAttribute('for', 'isPublic');
+        antwoordIsPublicLabel.innerHTML = 'Publiek?';
+
+        let antwoordIsPublic = document.createElement('input');
+        antwoordIsPublic.setAttribute('type', 'checkbox');
+        antwoordIsPublic.setAttribute('name', 'isPublic');
+        antwoordIsPublic.setAttribute('value', '0');
+        antwoordIsPublic.setAttribute('id', 'isPublic');
+
         let antwoordTextArea = document.createElement('textarea');
         antwoordTextArea.setAttribute('type', 'textarea');
         antwoordTextArea.setAttribute('name', 'antwoord');
@@ -32,6 +42,8 @@ beantwoordButtons.forEach(function (button) {
         });
 
         antwoordWrapper.appendChild(antwoordIdInput);
+        antwoordWrapper.appendChild(antwoordIsPublicLabel);
+        antwoordWrapper.appendChild(antwoordIsPublic);
         antwoordWrapper.appendChild(antwoordTextArea);
         antwoordWrapper.appendChild(antwoordButton);
 

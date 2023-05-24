@@ -37,7 +37,7 @@
         <h1>FAQ:</h1>
         <?php
             //display all the questions that are answered
-            $sql = "SELECT * FROM vragen WHERE status = 'Beantwoord'";
+            $sql = "SELECT * FROM vragen WHERE status = 'Beantwoord' AND public = '1'";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
             while($row = mysqli_fetch_assoc($result)){
