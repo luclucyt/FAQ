@@ -126,9 +126,7 @@
                 $userID = $row['ID'];
                 $status = $row['status'];
                 $admin = $row['admin'];
-
-            
-            }    echo "<script>alert({$admin})</script>";
+            }
 
             if($status == 1){
                 if($password == $dbPassword){

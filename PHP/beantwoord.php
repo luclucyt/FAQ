@@ -30,9 +30,10 @@
 
         if(mysqli_num_rows($result) > 0){
             while($row = mysqli_fetch_assoc($result)){
+                echo "<script>alert('{$row['vraagID']}')</script>";
                 echo "<h1>" . $row['vraag'] . "</h1>";
                 echo "<p>" . $row['mail'] . "</p>";
-                echo "<a href='beantwoord.php?id=" . $row['ID'] . "'>Beantwoord</a>";
+                echo "<a href='beantwoord.php?id=" . $row['vraagID'] . "'>Beantwoord</a>";
             }
         }else{
             echo "Geen vragen gevonden";
