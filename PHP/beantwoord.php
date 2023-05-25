@@ -59,9 +59,8 @@
             $vraagID = $_POST['vraagID'];
             $antwoord = $_POST['antwoord'];
             $isPublic = $_POST['isPublic'];
+            $vraag = $_POST['veranderVraag'];
 
-            echo "<script>alert('$vraagID');</script>";
-            echo "<script>alert('$antwoord');</script>";
 
             $sql = "UPDATE vragen SET status = 'Beantwoord' where vraagID = '$vraagID'";
             $result = mysqli_query($conn, $sql);
@@ -80,6 +79,11 @@
                 $result = mysqli_query($conn, $sql);
             }else{
                 $sql = "UPDATE vragen SET public = '0' where vraagID = '$vraagID'";
+                $result = mysqli_query($conn, $sql);
+            }
+
+            if(isset($vraag)){
+                $sql = "UPDATE vragen SET vraag = '$vraag' where vraagID = '$vraagID'";
                 $result = mysqli_query($conn, $sql);
             }
 

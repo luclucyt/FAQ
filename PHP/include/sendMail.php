@@ -36,7 +36,8 @@
 
         // generate a 6 digit code for the user to enter
         $code = rand(100000, 999999);
-        $mail->Body = "Bedankt voor je vraag: '{$vraag}'' <br> Je code is: '{$code}'";
+        $mail->Body = "Bedankt voor je vraag: '{$vraag}'' <br> Je code is: '{$code}'<br>
+        of klik op: <a href='http://localhost:3000/PHP/verify.php?code={$code}'>deze link o, hem te verirveren</a>";
 
         //get VraagID from database
         $sql = "SELECT vraagID FROM vragen WHERE vraag = '{$vraag}' AND mail = '{$SendMailTo}'";
@@ -52,7 +53,7 @@
         
 
         if($mail->send()){
-            echo 'Er is een mail verstuurd naar: ' . $SendMailTo . '<br>';
+            echo 'Er is een mail verstuurd naar: ' . $SendMailTo . ' (of klik op de link)<br>';
             echo 'Vul de code in die je hebt ontvangen: <br>';
             
             echo '<form action="" method="POST">';

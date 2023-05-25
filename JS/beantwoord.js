@@ -23,6 +23,13 @@ beantwoordButtons.forEach(function (button) {
         antwoordIsPublic.setAttribute('value', '0');
         antwoordIsPublic.setAttribute('id', 'isPublic');
 
+        let veranderVraag = document.createElement('input');
+        veranderVraag.setAttribute('type', 'text');
+        veranderVraag.setAttribute('name', 'veranderVraag');
+        veranderVraag.setAttribute('placeholder', 'Verander vraag...');
+        veranderVraag.setAttribute('required', 'required');
+
+
         let antwoordTextArea = document.createElement('textarea');
         antwoordTextArea.setAttribute('type', 'textarea');
         antwoordTextArea.setAttribute('name', 'antwoord');
@@ -44,6 +51,7 @@ beantwoordButtons.forEach(function (button) {
         antwoordWrapper.appendChild(antwoordIdInput);
         antwoordWrapper.appendChild(antwoordIsPublicLabel);
         antwoordWrapper.appendChild(antwoordIsPublic);
+        antwoordWrapper.appendChild(veranderVraag);
         antwoordWrapper.appendChild(antwoordTextArea);
         antwoordWrapper.appendChild(antwoordButton);
 
