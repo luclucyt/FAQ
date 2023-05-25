@@ -67,26 +67,14 @@
     }
 
     function SendLoginMail($SendMailTo, $conn){
-        
-        $mail = new PHPMailer();        
-
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-
-
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
-
-        $mail->Username = 'vanbriemenlucas@gmail.com';
-        $mail->Password = 'bfyrldyjmdvrzryv'; /* DO NOT CHANGE THIS */
+        $mail = SetMailUp($SendMailTo);
 
         $mail->Subject = 'Test mail';
-        $mail->setFrom('vanbriemenlucas@gmail.com');
 
         // generate a 6 digit code for the user to enter
         $code = rand(100000, 999999);
-
+        $mail->Body = "Maak een account aan met deze code: '{$code}'";
+        
         //get the userID from the database
         $sql = "SELECT id FROM users WHERE mail = '{$SendMailTo}'";
         $result = mysqli_query($conn, $sql);
@@ -98,12 +86,6 @@
         //write the code to the database
         $sql = "INSERT INTO userverify (id, userID, code) VALUES ('', '{$userID}', '{$code}')";
         $result = mysqli_query($conn, $sql);
-
-        $mail->isHTML(true);
-
-        $mail->Body = "Maak een account aan met deze code: '{$code}'";
-
-        $mail->addAddress("{$SendMailTo}");
 
         if($mail->send()){
             echo 'Er is een mail verstuurd naar: ' . $SendMailTo . '<br>';
