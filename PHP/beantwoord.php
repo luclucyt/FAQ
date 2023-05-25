@@ -85,6 +85,18 @@
 
             if($result){
                 echo "Vraag beantwoord";
+
+                //send mail to user
+                $sql = "SELECT * FROM vragen WHERE vraagID = '$vraagID'";
+                $result = mysqli_query($conn, $sql);
+                while($row = mysqli_fetch_assoc($result)){
+                    $code = $row['code'];
+                    $vraag = $row['vraag'];
+                    $mail = $row['mail'];
+
+                    SendAnwerToMail($mail, $vraag, $antwoord, $code);
+                }
+
             }else{
                 echo "Er is iets fout gegaan";
             }

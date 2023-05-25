@@ -102,11 +102,13 @@
         $mail->smtpClose();
     }
 
-    function SendAnwerToMail($SendMailTo, $vraag, $antwoord){
-        $mail = new PHPMailer();
+    function SendAnwerToMail($SendMailTo, $vraag, $antwoord, $code){
+        $mail = SetMailUp($SendMailTo);
 
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
+        $mail->Subject = 'Test mail';
+        $mail->Body = "Je vraag: '{$vraag}' is beantwoord met: '{$antwoord}'<br> 
+        <a href='http://localhost:3000/PHP/vraag.php?code={$code}'>Klik hier om naar de vraag te gaan</a>";
+
+        $mail->send();            
     }
 ?>
