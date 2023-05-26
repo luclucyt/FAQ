@@ -1,8 +1,6 @@
-<?php 
-    include 'root.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +10,10 @@
     <!-- JS -->
     <script src="../JS/beantwoord.js" defer></script>
 </head>
+
+<?php 
+    include 'root.php';
+?>
 
 <header>
     <nav>
