@@ -47,9 +47,7 @@
         }
     ?>
 
-    <form class="beantwoord-wrapper"  action="" method="POST">
-
-    </form>
+    <form class="beantwoord-wrapper"  action="" method="POST"></form>
 
     <?php
         if(isset($_POST['beantwoordButton'])){
