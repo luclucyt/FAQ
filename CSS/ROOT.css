@@ -1,7 +1,11 @@
 :root{
-    --primary-color: #1e73be;
-    --secondary-color: #686868 ;
-    --call-to-action-color: #8CDE08;
-    --background: #F5F5F5;
-    --text: #2b2b3c;
+    --primary-color: rgb(30, 115, 190);
+    --secondary-color: rgb(104, 104, 104) ;
+    --call-to-action-color: rgb(140, 222, 8);
+    --background: rgb(245, 245, 245);
+    --text: rgb(43, 43, 60);
+}
+
+html {
+    background-color: var(--background);
 }
