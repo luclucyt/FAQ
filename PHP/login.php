@@ -12,15 +12,6 @@
     include 'Root.php';
 ?>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="FAQ.php">FAQ</a></li>
-            <li><a href="beantwoord.php">Docent?</a></li>
-        </ul>
-    </nav>
-</header>
-
 <body>
     <h1>Login</h1>
     <form action="" method="POST">

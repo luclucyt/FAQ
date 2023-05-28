@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beantwoord FAQ || SD-lab</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/root.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/beantwoord.css">
+
     <!-- JS -->
     <script src="../JS/beantwoord.js" defer></script>
 </head>
@@ -14,15 +19,6 @@
 <?php 
     include 'root.php';
 ?>
-
-<header>
-    <nav>
-        <ul>
-            <li><a href="FAQ.php">FAQ</a></li>
-            <li><a href="login.php">Login</a></li>
-        </ul>
-    </nav>
-</header>
 
 <body>
     <?php
@@ -40,16 +36,19 @@
             echo "Geen vragen gevonden";
             exit();    
         }
-
-        //loop through all questions (if any) and display them
-        while($row = mysqli_fetch_assoc($result)){
-            echo "<h1>" . $row['vraag'] . "</h1>";
-            echo "<p>" . $row['mail'] . "</p>";
-            echo '<a class="beantwoordVraag" data-vraagId="'. $row['vraagID'] . '">Beantwoord</a>';
-        }
+        echo "<div class='vragen-wrapper'>";
+            //loop through all questions (if any) and display them
+            while($row = mysqli_fetch_assoc($result)){
+                echo '<a class="beantwoordVraag" data-vraagId="'. $row['vraagID'] . '" data-vraag="' . $row[''] . '">';
+                    echo "<div class='vraag-wrapper'>";
+                        echo "<h1>" . $row['vraag'] . "</h1>";
+                        echo "<p>" . $row['mail'] . "</p>";
+                    echo "</div>";
+                echo '</a>';
+            }
     ?>
 
-    <form class="beantwoord-wrapper"  action="" method="POST"></form>
+    <form class="beantwoord-wrapper" action="" method="POST"></form>
 
     <?php
         if(isset($_POST['beantwoordButton'])){

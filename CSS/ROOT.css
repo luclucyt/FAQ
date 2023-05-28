@@ -1,6 +1,6 @@
 :root{
     --primary-color: rgb(30, 115, 190);
-    --secondary-color: rgb(104, 104, 104) ;
+    --secondary-color: rgb(104, 104, 104);
     --call-to-action-color: rgb(140, 222, 8);
     --background: rgb(245, 245, 245);
     --text: rgb(43, 43, 60);
@@ -8,4 +8,10 @@
 
 html {
     background-color: var(--background);
+}
+
+*{
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }

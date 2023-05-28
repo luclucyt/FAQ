@@ -3,59 +3,35 @@ let beantwoordButtons = document.querySelectorAll('.beantwoordVraag');
 beantwoordButtons.forEach(function (button) {
     button.addEventListener('click', function () {
         let vraagId = button.getAttribute('data-vraagId');
+        let vraag = button.getAttribute('data-vraag');
 
         let antwoordWrapper = document.getElementsByClassName('beantwoord-wrapper')[0];
 
         antwoordWrapper.innerHTML = '';
 
-        let antwoordIdInput = document.createElement('input');
-        antwoordIdInput.setAttribute('type', 'hidden');
-        antwoordIdInput.setAttribute('name', 'vraagID');
-        antwoordIdInput.setAttribute('value', vraagId);
+        antwoordWrapper.innerHTML = `
+            <input type="hidden" name="vraagID" value="` + vraagId + `">
+            
+            <h2>Beantwoord vraag: "` + vraag + `"</h2>
 
-        let antwoordIsPublicLabel = document.createElement('label');
-        antwoordIsPublicLabel.setAttribute('for', 'isPublic');
-        antwoordIsPublicLabel.innerHTML = 'Publiek?';
+            <input type="text" name="veranderVraag" placeholder="Verander vraag..." class="veranderVraag"><br>
+            
+            <label for="isPublic">Publiek?</label>
+            <input type="checkbox" name="isPublic" value="0" id="isPublic">
 
-        let antwoordIsPublic = document.createElement('input');
-        antwoordIsPublic.setAttribute('type', 'checkbox');
-        antwoordIsPublic.setAttribute('name', 'isPublic');
-        antwoordIsPublic.setAttribute('value', '0');
-        antwoordIsPublic.setAttribute('id', 'isPublic');
+            <textarea type="textarea" name="antwoord" placeholder="Antwoord..." required="required" id="editor"></textarea>
+            
+            <input type="submit" name="beantwoordButton" value="Beantwoord" class="beantwoordButton">
+        `;
 
-        let veranderVraag = document.createElement('input');
-        veranderVraag.setAttribute('type', 'text');
-        veranderVraag.setAttribute('name', 'veranderVraag');
-        veranderVraag.setAttribute('placeholder', 'Verander vraag...');
-        veranderVraag.setAttribute('required', 'required');
-
-
-        let antwoordTextArea = document.createElement('textarea');
-        antwoordTextArea.setAttribute('type', 'textarea');
-        antwoordTextArea.setAttribute('name', 'antwoord');
-        antwoordTextArea.setAttribute('placeholder', 'Antwoord...');
-        antwoordTextArea.setAttribute('required', 'required');
-        antwoordTextArea.setAttribute('id', 'editor');
-
-        let antwoordButton = document.createElement('input');
-        antwoordButton.setAttribute('type', 'submit');
-        antwoordButton.setAttribute('name', 'beantwoordButton');
-        antwoordButton.setAttribute('value', 'Beantwoord');
-
+        let antwoordButton = document.getElementsByClassName('beantwoordButton')[0];
+        
         antwoordButton.addEventListener('click', function () {
             alert('Vraag beantwoord!');
             antwoordWrapper.submit();
             location.reload();
         });
 
-        antwoordWrapper.appendChild(antwoordIdInput);
-        antwoordWrapper.appendChild(antwoordIsPublicLabel);
-        antwoordWrapper.appendChild(antwoordIsPublic);
-        antwoordWrapper.appendChild(veranderVraag);
-        antwoordWrapper.appendChild(antwoordTextArea);
-        antwoordWrapper.appendChild(antwoordButton);
-
-        
         ClassicEditor.create( document.querySelector( '#editor' ) )
         .catch( error => {
             console.error( error );

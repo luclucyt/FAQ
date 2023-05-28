@@ -9,3 +9,5 @@ error_reporting(0);
 //include the needed files
 include 'include/db.php';
 include 'include/sendMail.php';
+
+include 'include/header.html';
