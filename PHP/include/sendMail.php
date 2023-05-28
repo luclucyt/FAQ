@@ -32,12 +32,12 @@
        
         $mail = SetMailUp($SendMailTo);
 
-        $mail->Subject = 'Test mail';
+        $mail->Subject = 'Code voor vraag op SD-lab';
 
-        // generate a 6 digit code for the user to enter
+        // generate a 6-digit code for the user to enter
         $code = rand(100000, 999999);
         $mail->Body = "Bedankt voor je vraag: '{$vraag}'' <br> Je code is: '{$code}'<br>
-        of klik op: <a href='http://localhost:3000/PHP/verify.php?code={$code}'>deze link o, hem te verirveren</a>";
+        of klik op: <a href='http://localhost:3000/PHP/verify.php?code={$code}'>deze link om, de vraag te verirveren</a>";
 
         //get VraagID from database
         $sql = "SELECT vraagID FROM vragen WHERE vraag = '{$vraag}' AND mail = '{$SendMailTo}'";
@@ -53,13 +53,19 @@
         
 
         if($mail->send()){
-            echo 'Er is een mail verstuurd naar: ' . $SendMailTo . ' (of klik op de link)<br>';
-            echo 'Vul de code in die je hebt ontvangen: <br>';
-            
-            echo '<form action="" method="POST">';
-                echo '<input type="text" name="code" placeholder="Code..."><br>';
-                echo '<input type="submit" name="submitCode" value="Verstuur">';
-            echo '</form>';
+            echo "
+                <script>
+                    document.getElementById('form-submit-new-wrapper').innerHTML = `
+                        <div id='form-submit-new-wrapper'>
+                            <h2>Bedankt voor je vraag!</h2>
+                            <p>Er is een mail verstuurd naar: {$SendMailTo}</p>
+                            <p>Vul de code in die je hebt ontvangen (of klik op de mail in de link):</p>
+                            <form action='' method='POST'>
+                                <input type='text' name='code' placeholder='Code...'><br>
+                                <input type='submit' name='submitCode' value='Verstuur'>
+                            </form>
+                        </div>`;
+                </script>";
         }else{
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         }

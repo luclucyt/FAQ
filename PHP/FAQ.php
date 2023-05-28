@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../CSS/FAQ.css">
 
     <!-- JS -->
+    <script src="../JS/root.js" defer></script>
     <script src="../JS/FAQ.js" defer></script>
 </head>
 
@@ -21,38 +22,56 @@
 ?>
 
 <body>
-    <div>
-        <h1>Stuur een vraag</h1>
-        <form action="" method="POST" id="form-submit-new-wrapper">
-            <input type="text" name="vraag" placeholder="Stel je vraag..."><br>
-            <input type="email" name="mail" placeholder="School Mail..." value="88875@glr.nl"><br>
+    <div class="send-wrapper">
+        <div>
+            <h1>Stuur een vraag</h1>
+            <form action="" method="POST" id="form-submit-new-wrapper">
+                <input type="text" name="vraag" placeholder="Stel je vraag"><br>
+                <input type="email" name="mail" placeholder="School Mail"><br>
 
-            <input type="submit" name="submitVraag" value="Verstuur">
-        </form>
+                <input type="submit" name="submitVraag" value="Verstuur">
+            </form>
+        </div>
+    </div>
 
-        <h1>FAQ:</h1>
+    <div class="antwoord-wrapper">
+        <div class="FAQ-titel-wrapper">
+            <div>
+                <h1 class="FAQ-title">FAQ:</h1>
 
-        <input type="text" id="searchInput" placeholder="Search by question...">
+                <input type="text" id="searchInput" placeholder="Search by question...">
+                <img src="../img/search.png" alt="Search Icon" class="search-icon">
+            </div>
+        </div>
 
         <?php
             //display all the questions that are answered
             $sql = "SELECT * FROM vragen WHERE status = 'Beantwoord' AND public = '1'";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
-            
-            echo "<div id='questionContainer'>";
-                while($row = mysqli_fetch_assoc($result)){
-                    // display the questions with the answer
-                    echo "<a href='vraag.php?code=" . $row['code'] . "'>";
-                        echo "<div class='vraag-wrapper'>";
-                            echo "<h2>" . $row['vraag'] . "</h2>";
-                            echo "<p>" . $row['antwoord'] . "</p>";
+
+            echo "<div class='main-questionContainer'>";
+                echo "<div id='questionContainer'>";
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        // display the questions with the answer
+                        echo "<a href='vraag.php?code=" . $row['code'] . "' class='vraag-wrapper'>";
+                        echo "<div class='antwoord-wrapper'>";
+
+                        $vraag = strip_tags($row['vraag']);
+                        $antwoord = strip_tags($row['antwoord']);
+
+                        echo "<h2 class='antwoord'>" . $vraag . "</h2>";
+                        echo "<p class='antwoord-item'>" . $antwoord . "</p>";
+
                         echo "</div>";
-                    echo "</a>";
-                }
+                        echo "</a>";
+                    }
+                echo "</div>";
+
             echo "</div>";
         ?>
     </div>
+
 </body>
 </html>
 
