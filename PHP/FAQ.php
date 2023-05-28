@@ -8,6 +8,8 @@
     <title>FAQ || SD-lab</title>
 
     <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/root.css">
+    <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/FAQ.css">
 
     <!-- JS -->
@@ -17,15 +19,6 @@
 <?php 
     include 'Root.php';
 ?>
-
-<header>
-    <nav>
-        <ul>
-            <li><a href="login.php">Login</a></li>
-            <li><a href="beantwoord.php">Docent?</a></li>
-        </ul>
-    </nav>
-</header>
 
 <body>
     <div>
@@ -70,6 +63,9 @@
         $vraag = $_POST['vraag'];
         $mail = $_POST['mail'];
 
+        $vraag = mysqli_real_escape_string($conn, $vraag);
+        $mail = mysqli_real_escape_string($conn, $mail);
+
         //current date
         $date = date("Y-m-d");
 
@@ -78,6 +74,7 @@
 
         //insert into database
         $sql = "INSERT INTO vragen (vraagID, vraag, mail, antwoord, status, tags, beantwoordDoor, aangemaakt, ingediend, geantwoord, bewerkt, code) VALUES ('', '$vraag', '$mail', '', 'Aangemaakt', '', '', '{$date}', '', '', '', '{$code}')";
+
         $result = mysqli_query($conn, $sql);
 
         //get the vraagID
@@ -98,6 +95,8 @@
     if(isset($_POST['submitCode'])){
         //the code is submitted
         $code = $_POST['code'];
+
+        $code = mysqli_real_escape_string($conn, $code);
 
         //check if the code exists in the database
         $sql = "SELECT * FROM verify WHERE code = '{$code}'";

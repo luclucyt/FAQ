@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login FAQ || SD-lab</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../CSS/root.css">
+    <link rel="stylesheet" href="../CSS/header.css">
 </head>
 
 <?php 
@@ -64,6 +68,8 @@
 
         //check if mail is already in use
         $sql = "SELECT mail FROM users WHERE mail = '{$mail}'";
+        $sql = htmlspecialchars($sql);
+        $sql = mysqli_real_escape_string($conn, $sql);
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
 
@@ -74,6 +80,8 @@
 
         //register
         $sql = "INSERT INTO users (ID, naam, mail, wachtwoord, admin, status) VALUES ('', '{$naam}', '{$mail}', '{$password}', '{$admin}', '0')";
+        $sql = htmlspecialchars($sql);
+        $sql = mysqli_real_escape_string($conn, $sql);
         $result = mysqli_query($conn, $sql);
 
         SendLoginMail($mail, $conn);
@@ -83,6 +91,8 @@
         $code = $_POST['code'];
 
         $sql = "SELECT * FROM userverify WHERE code = '{$code}'";
+        $sql = htmlspecialchars($sql);
+        $sql = mysqli_real_escape_string($conn, $sql);
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
 
@@ -92,9 +102,13 @@
             }
 
             $sql = "UPDATE users SET status = '1' WHERE id = '{$userID}'";
+            $sql = htmlspecialchars($sql);
+            $sql = mysqli_real_escape_string($conn, $sql);
             $result = mysqli_query($conn, $sql);
 
             $sql = "DELETE FROM userverify WHERE userID = '{$userID}'";
+            $sql = htmlspecialchars($sql);
+            $sql = mysqli_real_escape_string($conn, $sql);
             $result = mysqli_query($conn, $sql);
 
             echo "Account is geverifieerd";
@@ -110,6 +124,8 @@
         $password = $_POST['password'];
 
         $sql = "SELECT * FROM users WHERE mail = '{$mail}'";
+        $sql = htmlspecialchars($sql);
+        $sql = mysqli_real_escape_string($conn, $sql);
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
 
