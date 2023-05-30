@@ -10,6 +10,11 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../CSS/root.css">
     <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/login.css">
+
+    <!-- JS -->
+    <script src="../JS/root.js" defer></script>
+    <script src="../JS/login.js" defer></script>
 </head>
 
 <?php 
@@ -17,23 +22,33 @@
 ?>
 
 <body>
-    <h1>Login</h1>
-    <form action="" method="POST">
-        <input type="text" name="mail" placeholder="School Mail..."><br>
-        <input type="password" name="password" placeholder="Wachtwoord"><br>
+    <main>
+        <div class="login-wrapper">
+            <div>
+                <h1>Login:</h1>
+                <form action="" method="POST">
+                    <input type="text" name="mail" placeholder="School Mail..."><br>
+                    <input type="password" name="password" placeholder="Wachtwoord"><br>
 
-        <input type="submit" name="submitLogin" value="Login">
-    </form>
+                    <input type="submit" name="submitLogin" value="Login">
+                </form>
+            </div>
+        </div>
 
-    <h1>Registreer</h1>
-    <form action="" method="POST">
-        <input type="text" name="naam" placeholder="Naam"><br>
-        <input type="text" name="mail" placeholder="School Mail..."><br>
-        <input type="password" name="password" placeholder="Wachtwoord"><br>
-        <input type="password" name="password2" placeholder="Herhaal Wachtwoord"><br>
+        <div class="registreer-wrapper">
+            <div>
+                <h1>Registreer:</h1>
+                <form action="" method="POST" class="registreer-form">
+                    <input type="text" name="naam" placeholder="Naam"><br>
+                    <input type="text" name="mail" placeholder="School Mail..."><br>
+                    <input type="password" name="password" placeholder="Wachtwoord"><br>
+                    <input type="password" name="password2" placeholder="Herhaal Wachtwoord"><br>
 
-        <input type="submit" name="submitRegistreer" value="Registreer">
-    </form>
+                    <input type="submit" name="submitRegistreer" value="Registreer">
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
 
@@ -68,8 +83,6 @@
 
         //check if mail is already in use
         $sql = "SELECT mail FROM users WHERE mail = '{$mail}'";
-        $sql = htmlspecialchars($sql);
-        $sql = mysqli_real_escape_string($conn, $sql);
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
 
@@ -80,8 +93,6 @@
 
         //register
         $sql = "INSERT INTO users (ID, naam, mail, wachtwoord, admin, status) VALUES ('', '{$naam}', '{$mail}', '{$password}', '{$admin}', '0')";
-        $sql = htmlspecialchars($sql);
-        $sql = mysqli_real_escape_string($conn, $sql);
         $result = mysqli_query($conn, $sql);
 
         SendLoginMail($mail, $conn);
@@ -91,8 +102,6 @@
         $code = $_POST['code'];
 
         $sql = "SELECT * FROM userverify WHERE code = '{$code}'";
-        $sql = htmlspecialchars($sql);
-        $sql = mysqli_real_escape_string($conn, $sql);
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
 
@@ -102,13 +111,9 @@
             }
 
             $sql = "UPDATE users SET status = '1' WHERE id = '{$userID}'";
-            $sql = htmlspecialchars($sql);
-            $sql = mysqli_real_escape_string($conn, $sql);
             $result = mysqli_query($conn, $sql);
 
             $sql = "DELETE FROM userverify WHERE userID = '{$userID}'";
-            $sql = htmlspecialchars($sql);
-            $sql = mysqli_real_escape_string($conn, $sql);
             $result = mysqli_query($conn, $sql);
 
             echo "Account is geverifieerd";
@@ -124,8 +129,6 @@
         $password = $_POST['password'];
 
         $sql = "SELECT * FROM users WHERE mail = '{$mail}'";
-        $sql = htmlspecialchars($sql);
-        $sql = mysqli_real_escape_string($conn, $sql);
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
 

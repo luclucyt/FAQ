@@ -95,6 +95,20 @@
         $result = mysqli_query($conn, $sql);
 
         if($mail->send()){
+
+            echo '<script>document.getElementsByClassName("registreer-form")[0].innerHTML = `
+                    <div class="create-account-wrapper">
+                        <h2>Maak een account aan</h2>
+                        <p>Er is een mail verstuurd naar: ' . $SendMailTo . '</p>
+                        <p>Vul de code in die je hebt ontvangen:</p>
+                        
+                        <form action="" method="POST">
+                            <input type="text" name="code" placeholder="Code...">
+                            <input type="submit" name="userverify" value="Verstuur">
+                        </form>
+                    </div>`;
+                </script>';
+
             echo 'Er is een mail verstuurd naar: ' . $SendMailTo . '<br>';
             echo 'Vul de code in die je hebt ontvangen: <br>';
             

@@ -36,12 +36,13 @@ body{
 
 #form-submit-new-wrapper input:hover{
     background-color: rgb(200, 200, 200);
-    scale: 0.99;
+    scale: 1.01;
+    box-shadow: 15px 15px 9px 0px rgba(150,150,150,1);
 }
 
 #form-submit-new-wrapper input:active{
     background-color: var(--primary-color);
-    scale: 0.99;
+    scale: 1.01;
 }
 
 .FAQ-titel-wrapper{
@@ -88,12 +89,13 @@ body{
 
 .FAQ-titel-wrapper div input:hover {
     background-color: rgb(200, 200, 200);
-    scale: 0.99;
+    box-shadow: 15px 15px 9px 0px rgba(150,150,150,1);
+    scale: 1.01;
 }
 
 .FAQ-titel-wrapper div input:active{
     background-color: var(--primary-color);
-    scale: 0.99;
+    scale: 1.01;
 }
 
 .main-questionContainer{
