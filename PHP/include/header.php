@@ -2,7 +2,11 @@
     <nav>
         <ul>
             <li><a href="FAQ.php">FAQ</a></li>
-            <li><a href="beantwoord.php">Docent?</a></li>
+            <?php
+            if($_SESSION['admin'] == true){
+                echo "<li><a href='beantwoord.php'>Beantwoord</a></li>";
+            }
+            ?>
             <li><a href="login.php">Login</a></li>
         </ul>
     </nav>

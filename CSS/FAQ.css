@@ -11,7 +11,7 @@ body{
 }
 
 .send-wrapper div{
-    background-color: rgba(104, 104, 104, 0.25);
+    background-color: rgba(102, 102, 102, 0.25);
     padding: 2.5vh 10vw;
     border-radius: 10px;
     box-shadow: 10px 10px 9px 0px rgba(120,120,120,1);
@@ -54,8 +54,8 @@ body{
 }
 
 .FAQ-titel-wrapper div{
-    background-color: rgba(104, 104, 104, 0.25);
-    padding: 2.5vh 15vw;
+    background-color: rgba(102, 102, 102, 0.25);
+    padding: 2.5vh 13.5vw;
     border-radius: 10px;
     box-shadow: 10px 10px 9px 0px rgba(120,120,120,1);
 
@@ -115,7 +115,7 @@ body{
 
 
 .vraag-wrapper div{
-    background-color: rgba(104, 104, 104, 0.25);
+    background-color: rgba(102, 102, 102, 0.25);
 
     width: 15vw;
     height: 25vh;
@@ -149,4 +149,34 @@ body{
     -webkit-box-orient: vertical;
     overflow: hidden;
     word-break: break-all;
+}
+
+textarea{
+    width: 100%;
+    height: 20vh;
+    border-radius: 10px;
+    border: 1px solid var(--text);
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 2vh;
+    font-weight: bold;
+    padding: 1vh 1vw;
+    resize: none;
+
+    margin-top: 1vh;
+}
+
+select{
+    width: 100%;
+    height: 5vh;
+    border-radius: 10px;
+    border: 1px solid var(--text);
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 2vh;
+    font-weight: bold;
+    padding: 1vh 1vw;
+    resize: none;
+
+    margin-top: 1vh;
 }

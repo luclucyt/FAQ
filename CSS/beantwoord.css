@@ -1,6 +1,6 @@
 body {
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .vragen-wrapper {
@@ -89,4 +89,9 @@ body {
 
 .beantwoordButton:hover{
     background-color: rgba(30, 115, 190, 0.75);
+}
+
+.vraag-omschrijving{
+    word-wrap: normal;
+    white-space: normal;
 }

@@ -10,4 +10,4 @@ session_start();
 include 'include/db.php';
 include 'include/sendMail.php';
 
-include 'include/header.html';
+include 'include/header.php';

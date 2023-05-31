@@ -34,7 +34,7 @@ header > nav > ul > li > a{
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: bold;
-    background-color: rgba(104, 104, 104, 0.75);
+    background-color: rgba(102, 102, 102, 0.75);
     padding: 10px 20px;
     border-radius: 5px;
 
@@ -42,5 +42,5 @@ header > nav > ul > li > a{
 }
 
 header > nav > ul > li > a:hover{
-    background-color: rgba(104, 104, 104, 1);
+    background-color: rgba(102, 102, 102, 1);
 }

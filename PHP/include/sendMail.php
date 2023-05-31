@@ -24,7 +24,6 @@
         $mail->isHTML(true);
         $mail->addAddress("{$SendMailTo}");
 
-
         return $mail;
     }
 

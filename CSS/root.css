@@ -1,17 +1,21 @@
+@import url('https://fonts.cdnfonts.com/css/nimbus-sans-l');
 :root{
-    --primary-color: rgb(30, 115, 190);
-    --secondary-color: rgb(104, 104, 104);
-    --call-to-action-color: rgb(140, 222, 8);
-    --background: rgb(245, 245, 245);
-    --text: rgb(43, 43, 60);
+    --primary-color: rgb(0, 99, 175);
+    --secondary-color: rgb(102, 102, 105);
+    --call-to-action-color: rgb(143, 229, 7);
+    --background: rgb(255, 255, 255);
+    --text: rgb(35, 35, 35);
 }
 
 html {
     background-color: var(--background);
 }
 
+                
 *{
     color: var(--text);
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
+
+    font-family: 'Nimbus Sans L', sans-serif;
 }

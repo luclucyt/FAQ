@@ -4,37 +4,18 @@ beantwoordButtons.forEach(function (button) {
     button.addEventListener('click', function () {
         let vraagId = button.getAttribute('data-vraagId');
         let vraag = button.getAttribute('data-vraag');
+        let vraagOmschrijving = button.getAttribute('data-omschrijving');
+        let edit = button.getAttribute('data-edit'); // 0 = false, 1 = true
 
-        let antwoordWrapper = document.getElementsByClassName('beantwoord-wrapper')[0];
-
-        antwoordWrapper.innerHTML = '';
-
-        antwoordWrapper.innerHTML = `
-            <input type="hidden" name="vraagID" value="` + vraagId + `">
-            
-            <h2>Beantwoord vraag: "` + vraag + `"</h2>
-
-            <input type="text" name="veranderVraag" placeholder="Verander vraag..." class="veranderVraag"><br>
-            
-            <label for="isPublic">Publiek?</label>
-            <input type="checkbox" name="isPublic" value="0" id="isPublic">
-
-            <textarea type="textarea" name="antwoord" placeholder="Antwoord..." required="required" id="editor"></textarea>
-            
-            <input type="submit" name="beantwoordButton" value="Beantwoord" class="beantwoordButton">
-        `;
-
+        document.getElementById('vraagID').value = vraagId;
+        document.getElementById('vraagElement').innerHTML = 'Vraag: "'  + vraag + '"';
+        document.getElementsByClassName('vraag-omschrijving')[0].innerHTML = 'Omschrijving: "' + vraagOmschrijving + '"';
+        
         let antwoordButton = document.getElementsByClassName('beantwoordButton')[0];
         
         antwoordButton.addEventListener('click', function () {
-            alert('Vraag beantwoord!');
             antwoordWrapper.submit();
             location.reload();
         });
-
-        ClassicEditor.create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
     })
 });
