@@ -15,9 +15,6 @@
     <!-- JS -->
     <script src="../JS/root.js" defer></script>
     <script src="../JS/login.js" defer></script>
-
-    <!-- Font -->
-    <link href="https://fonts.cdnfonts.com/css/nimbus-sans-l" rel="stylesheet">
 </head>
 
 <?php 

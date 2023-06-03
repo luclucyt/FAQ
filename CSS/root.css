@@ -14,8 +14,11 @@ html {
                 
 *{
     color: var(--text);
-    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
 
     font-family: 'Nimbus Sans L', sans-serif;
+}
+
+#fr-logo{
+    display: none;
 }

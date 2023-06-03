@@ -54,7 +54,7 @@
         if($mail->send()){
             echo "
                 <script>
-                    document.getElementById('form-submit-new-wrapper').innerHTML = `
+                    document.getElementById('new-form-wrapper').innerHTML = `
                         <div id='form-submit-new-wrapper'>
                             <h2>Bedankt voor je vraag!</h2>
                             <p>Er is een mail verstuurd naar: {$SendMailTo}</p>

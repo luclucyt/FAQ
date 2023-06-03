@@ -26,7 +26,7 @@
 ?>
 
 <body>
-    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script> 
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
 
 
     <select>
@@ -45,7 +45,7 @@
 
         select.addEventListener('change', function(){
             for(let i = 0; i < vragen.length; i++){
-                if(vragen[i].getAttribute('data-tag') == select.value || select.value == ""){
+                if(vragen[i].getAttribute('data-tag') === select.value || select.value === ""){
                     vragen[i].style.display = "block";
                 }else{
                     vragen[i].style.display = "none";
@@ -56,13 +56,29 @@
 
 
     <?php
-        if($_SESSION['admin'] == false){
+        if(!$_SESSION['admin']){
             echo "Je bent geen docent";
             exit();
         }
 
+        if(isset($_GET['page'])){
+            $page = $_GET['page'];
+        }
+        else{
+            $page = 1;
+        }
+
+
+        $offset = ($page - 1) * 25;
+
+
+        //check how many questions are not answered
+        $sql = "SELECT vraagID FROM vragen WHERE status = 'Ingediend'";
+        $result = mysqli_query($conn, $sql);
+        $total = mysqli_num_rows($result);
+
         //get all questions that are not answered in order of oldest to newest
-        $sql = "SELECT * FROM vragen WHERE status = 'Ingediend' ORDER BY 'vraagID'";
+        $sql = "SELECT * FROM vragen WHERE status = 'Ingediend' ORDER BY 'vraagID' LIMIT 25 OFFSET $offset";
         $result = mysqli_query($conn, $sql);
 
         //if no questions are found
@@ -81,8 +97,22 @@
                     echo "</div>";
                 echo '</a>';
             }
-            
-        
+
+
+            // Display next and previous page links if needed
+            $totalPages = ceil($total / 25); // Calculate total pages
+            if ($totalPages > 1) {
+                echo "<div class='pagination'>";
+                if ($page > 1) {
+                    echo "<a href='?page=" . ($page - 1) . "' class='prev'>Vorige pagina</a>";
+                }
+                if ($page < $totalPages) {
+                    echo "<a href='?page=" . ($page + 1) . "' class='next'>Volgende pagina</a>";
+                }
+                echo "</div>";
+            }
+
+        echo "</div>";
     ?>
 
     <form class="beantwoord-wrapper" action="" method="POST">
@@ -97,7 +127,7 @@
         <input type="checkbox" name="isPublic" value="0" id="isPublic">
 
         <label for="categorie">Categorie:</label>
-        <select name="categorie" id="categorie" name="categorie">
+        <select name="categorie" id="categorie">
             <option value="Algemeen">Algemeen</option>
             <option value="Techonogie">Techonogie</option>
             <option value="Rooster">Rooster</option>
@@ -138,7 +168,7 @@
         }
     ?>
     <script>
-        var editor = new FroalaEditor('#editor', {
+        let editor = new FroalaEditor('#editor', {
             // Set the file upload URL.
             imageUploadURL: 'test.php',
 
@@ -192,11 +222,10 @@
 
             if (isset($_POST['isPublic'])) {
                 $sql = "UPDATE vragen SET public = '1' where vraagID = '$vraagID'";
-                $result = mysqli_query($conn, $sql);
             }else{
                 $sql = "UPDATE vragen SET public = '0' where vraagID = '$vraagID'";
-                $result = mysqli_query($conn, $sql);
             }
+            $result = mysqli_query($conn, $sql);
 
             $sql = "UPDATE vragen SET tags = '$tag' where vraagID = '$vraagID'";
             $result = mysqli_query($conn, $sql);

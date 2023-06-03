@@ -1,4 +1,5 @@
 let beantwoordButtons = document.querySelectorAll('.beantwoordVraag');
+let antwoordWrapper = document.getElementsByClassName('beantwoord-wrapper')[0];
 
 beantwoordButtons.forEach(function (button) {
     button.addEventListener('click', function () {
