@@ -32,7 +32,10 @@ function filterFAQ(){
     let filterSelect = document.getElementById('FAQ-filter-select').value;
     let FAQ = document.getElementsByClassName('FAQ-category-wrapper-BTN');
 
+    filterSelect = filterSelect.toLowerCase();
+
     for (let i = 0; i < FAQ.length; i++) {
+
         if(filterSelect !== "alles") {
             if(FAQ[i].classList.contains("FAQ-category-wrapper-" + filterSelect)){
                 FAQ[i].style.display = "block";

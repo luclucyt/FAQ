@@ -33,33 +33,34 @@
 
                 <select id="FAQ-filter-select">
                     <option value="alles">Alles</option>
-                    <option value="algemeen">Algemeen</option>
-                    <option value="technologie">Technologie</option>
-                    <option value="rooster">Rooster</option>
-                    <option value="cijfers">Cijfers</option>
-                    <option value="activiteiten">Activiteiten</option>
-                    <option value="overig">Overig</option>
+                    <?php 
+                        $sql = "SELECT DISTINCT tags FROM vragen WHERE status = 'Beantwoord' AND public = '1'";
+                        $result = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<option value='" . $row['tags'] . "'>" . $row['tags'] . "</option>";
+                        }
+                    ?>
+                    
                 </select>
 
                 <a href="create.php" class="FAQ-create-BTN">Stel een vraag</a>
             </div>
         </div>
 
-<!--        <h1 class="FAQ-header">Vragen:</h1>-->
         <main>
-                <?php displayVragen("Algemeen", $conn) ?>
-                <?php displayVragen("Technologie", $conn) ?>
-                <?php displayVragen("Rooster", $conn) ?>
-                <?php displayVragen("Cijfers", $conn) ?>
-                <?php displayVragen("Activiteiten", $conn) ?>
-                <?php displayVragen("Overig", $conn) ?>
+            <?php
+                $sql = "SELECT DISTINCT tags FROM vragen WHERE status = 'Beantwoord' AND public = '1'";
+                $result = mysqli_query($conn, $sql);
+                while ($row = mysqli_fetch_assoc($result)) {
+                    displayVragen($row['tags'], $conn);
+                }
+            ?>
         </main>
 
         <?php
             function displayVragen($tags, $conn){
                 $sql = "SELECT * FROM vragen WHERE status = 'Beantwoord' AND public = '1' AND tags = '$tags' ORDER BY views";
                 $result = mysqli_query($conn, $sql);
-                $resultCheck = mysqli_num_rows($result);
 
                 $tags = strtolower($tags);
 
