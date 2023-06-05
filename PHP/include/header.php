@@ -1,6 +1,6 @@
 <header>
     <nav>
-        <ul>
+        <ul class="menu">
             <li><a href="FAQ.php">FAQ</a></li>
             <?php
                 if(isset($_SESSION['admin'])) {
