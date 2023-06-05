@@ -168,14 +168,16 @@
         }
     ?>
     <script>
+        //allow img uploads
         let editor = new FroalaEditor('#editor', {
-            // Set the file upload URL.
+            // allow imgages.
             imageUploadURL: 'test.php',
 
             imageUploadParams: {
                 id: 'my_editor'
             }
         });
+
 
     </script>
  

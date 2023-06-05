@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$targetDir = '../img/';
+$targetDir = '../img/antwoord/';
 
 $fileName = uniqid() . '_' . $_FILES['file']['name'];
 $targetPath = $targetDir . $fileName;
@@ -11,7 +11,7 @@ $targetPath = $targetDir . $fileName;
 // Check if the file was uploaded successfully
 if (move_uploaded_file($_FILES['file']['tmp_name'], $targetPath)) {
     $response = array(
-        'link' => '/img/' . $fileName, // Update the link to include the complete URL or path
+        'link' => '/img/antwoord/' . $fileName,
         'title' => $fileName
     );
   

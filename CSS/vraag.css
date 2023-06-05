@@ -46,3 +46,18 @@ main{
     display: flex;
     justify-content: space-around;
 }
+
+.edit, .edit img{
+    float: right;
+    height: 2.5vh;
+}
+
+.vraag{
+    margin-top: 5vh;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
+}

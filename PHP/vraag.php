@@ -24,30 +24,38 @@
 <body>
     <main>
         <div class="vraag-wrapper">
-            <?php 
+            <?php
+                if(!isset($_GET['code'])){
+                    header("Location: FAQ.php");
+                    exit();
+                }
+
                 //extract the code from the url and display the question and answer
                 $code = $_GET['code'];
+
                 $code = mysqli_real_escape_string($conn, $code);
 
                 $sql = "SELECT * FROM vragen WHERE code = '$code'";
 
                 echo "<a href='../PHP/faq.php' class='back'><img src='../img/arrow.png'><span>Ga terug</span></a>";
 
-                if($_SESSION['admin'] == true){
+                if(isset($_SESSION['admin'])) {
+                    if($_SESSION['admin'] == true){
 
-                    $sql = "SELECT * FROM vragen WHERE code = '$code'";
-                    $result = mysqli_query($conn, $sql);
-                    $row = mysqli_fetch_assoc($result);
+                        $sql = "SELECT * FROM vragen WHERE code = '$code'";
+                        $result = mysqli_query($conn, $sql);
+                        $row = mysqli_fetch_assoc($result);
 
-                    $code = $row['code'];
-                    
-                    echo "<a href='../PHP/beantwoord.php?code={$code}&edit=1' class='edit'><img src='../img/pen.png'></a>";                    
+                        $code = $row['code'];
+                        
+                        echo "<a href='../PHP/beantwoord.php?code={$code}&edit=1' class='edit'><img src='../img/pen.png'></a>";                    
+                    }
                 }
 
                 $result = mysqli_query($conn, $sql);
 
                 while($row = mysqli_fetch_assoc($result)){
-                    echo "<h1>" . $row['vraag'] . "</h1>";
+                    echo "<h1 class='vraag'>" . $row['vraag'] . "</h1>";
                     echo "<div class='info-wrapper'>";
                         echo "<div>";
                             echo "|<img src='../img/user.png' alt='user' class='user img'>| ";

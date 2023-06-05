@@ -135,7 +135,7 @@
         if($count == 1){
             while($row = mysqli_fetch_assoc($result)){
                 $dbPassword = $row['wachtwoord'];
-                $userID = $row['ID'];
+                $userID = $row['id'];
                 $userName = $row['naam'];
                 $status = $row['status'];
                 $admin = $row['admin'];
@@ -145,7 +145,8 @@
                 if($password == $dbPassword){
                     $_SESSION['userID'] = $userID;
                     $_SESSION['userName'] = $userName;
-                    echo "Je bent ingelogd";
+
+                    echo "<script>alert('Je bent ingelogd')</script>";
 
                     if($admin == 1){
                         $_SESSION['admin'] = true;
@@ -153,13 +154,14 @@
                         $_SESSION['admin'] = false;
                     }
                 }else{
-                    echo "Wachtwoord is niet correct";
+                    echo "<script>alert('Wachtwoord is verkeerd')</script>";
+
                 }
             }else{
-                echo "Account is nog niet geverifieerd";
+                echo "<script>alert('Account is nog niet geverifieerd')</script>";
             }
         }else{
-            echo "Mail is niet gevonden";
+            echo "<script>alert('Account bestaat niet')</script>";
         }
     }
 ?>
