@@ -14,14 +14,14 @@ function searchFAQ(){
         if(searchInput !== "") {
             if(vraag.includes(searchInput)) {
                 FAQ[i].style.display = "block";
-                FAQ[i].style.width = "15vw";
+                FAQ[i].style.width = "100%";
             } else {
                 FAQ[i].style.display = "none";
                 FAQ[i].style.width = "0";
             }
         } else {
             FAQ[i].style.display = "block";
-            FAQ[i].style.width = "15vw";
+            FAQ[i].style.width = "100%";
         }
     }
 }
@@ -39,14 +39,14 @@ function filterFAQ(){
         if(filterSelect !== "alles") {
             if(FAQ[i].classList.contains("FAQ-category-wrapper-" + filterSelect)){
                 FAQ[i].style.display = "block";
-                FAQ[i].style.width = "15vw";
+                FAQ[i].style.width = "100%";
             } else {
                 FAQ[i].style.display = "none";
                 FAQ[i].style.width = "0";
             }
         } else {
             FAQ[i].style.display = "block";
-            FAQ[i].style.width = "15vw";
+            FAQ[i].style.width = "100%";
         }
     }
 }
