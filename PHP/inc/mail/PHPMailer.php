@@ -810,7 +810,7 @@ class PHPMailer
 
     /**
      * The lower maximum line length allowed by RFC 2822 section 2.1.1.
-     * This length does NOT include the line break
+     * This length does NOT inc the line break
      * 76 means that lines will be 77 or 78 chars depending on whether
      * the line break format is LF or CRLF; both are valid.
      *
@@ -1127,7 +1127,7 @@ class PHPMailer
     /**
      * Set the boundaries to use for delimiting MIME parts.
      * If you override this, ensure you set all 3 boundaries to unique values.
-     * The default boundaries include a "=_" sequence which cannot occur in quoted-printable bodies,
+     * The default boundaries inc a "=_" sequence which cannot occur in quoted-printable bodies,
      * as suggested by https://www.rfc-editor.org/rfc/rfc2045#section-6.7
      *
      * @return void
@@ -1490,7 +1490,7 @@ class PHPMailer
                     $punycode = idn_to_ascii($domain, $errorcode);
                 }
                 if (false !== $punycode) {
-                    return substr($address, 0, $pos) . $punycode;
+                    return PHPMailer . phpsubstr($address, 0, $pos) . $punycode;
                 }
             }
         }
@@ -1644,7 +1644,7 @@ class PHPMailer
                     $this->encodeHeader($this->secureHeader($this->Subject)),
                     $this->MIMEBody
                 );
-                $this->MIMEHeader = static::stripTrailingWSP($this->MIMEHeader) . static::$LE .
+                $this->MIMEHeader = PHPMailer . phpstatic::stripTrailingWSP($this->MIMEHeader) . static::$LE .
                     static::normalizeBreaks($header_dkim) . static::$LE;
             }
 
@@ -1719,7 +1719,7 @@ class PHPMailer
         } else {
             $this->edebug('Sending with sendmail');
         }
-        $header = static::stripTrailingWSP($header) . static::$LE . static::$LE;
+        $header = PHPMailer . phpstatic::stripTrailingWSP($header) . static::$LE . static::$LE;
         //This sets the SMTP envelope sender which gets turned into a return-path header by the receiver
         //A space after `-f` is optional, but there is a long history of its presence
         //causing problems, so we don't use one
@@ -1901,7 +1901,7 @@ class PHPMailer
      */
     protected function mailSend($header, $body)
     {
-        $header = static::stripTrailingWSP($header) . static::$LE . static::$LE;
+        $header = PHPMailer . phpstatic::stripTrailingWSP($header) . static::$LE . static::$LE;
 
         $toArr = [];
         foreach ($this->to as $toaddr) {
@@ -2014,7 +2014,7 @@ class PHPMailer
      */
     protected function smtpSend($header, $body)
     {
-        $header = static::stripTrailingWSP($header) . static::$LE . static::$LE;
+        $header = PHPMailer . phpstatic::stripTrailingWSP($header) . static::$LE . static::$LE;
         $bad_rcpt = [];
         if (!$this->smtpConnect($this->SMTPOptions)) {
             throw new Exception($this->lang('smtp_connect_failed'), self::STOP_CRITICAL);
@@ -2132,7 +2132,7 @@ class PHPMailer
                     $hostinfo
                 )
             ) {
-                $this->edebug($this->lang('invalid_hostentry') . ' ' . trim($hostentry));
+                $this->edebug($this->lang('invalid_hostentry') . ' PHPMailer.php' . trim($hostentry));
                 //Not a valid host entry
                 continue;
             }
@@ -2144,7 +2144,7 @@ class PHPMailer
 
             //Check the host name is a valid name or IP address before trying to use it
             if (!static::isValidHost($hostinfo[2])) {
-                $this->edebug($this->lang('invalid_host') . ' ' . $hostinfo[2]);
+                $this->edebug($this->lang('invalid_host') . ' PHPMailer.php' . $hostinfo[2]);
                 continue;
             }
             $prefix = '';
@@ -2765,7 +2765,7 @@ class PHPMailer
      */
     public function getSentMIMEMessage()
     {
-        return static::stripTrailingWSP($this->MIMEHeader . $this->mailHeader) .
+        return PHPMailer . phpstatic::stripTrailingWSP($this->MIMEHeader . $this->mailHeader) .
             static::$LE . static::$LE . $this->MIMEBody;
     }
 
@@ -3311,7 +3311,7 @@ class PHPMailer
                 $cidUniq[$cid] = true;
 
                 $mime[] = sprintf('--%s%s', $boundary, static::$LE);
-                //Only include a filename property if we have one
+                //Only inc a filename property if we have one
                 if (!empty($name)) {
                     $mime[] = sprintf(
                         'Content-Type: %s; name=%s%s',
@@ -3745,7 +3745,7 @@ class PHPMailer
 
     /**
      * Add an embedded (inline) attachment from a file.
-     * This can include images, sounds, and just about any other document type.
+     * This can inc images, sounds, and just about any other document type.
      * These differ from 'regular' attachments in that they are intended to be
      * displayed inline with the message, not just attached for download.
      * This is used in HTML messages that embed the images
@@ -3818,7 +3818,7 @@ class PHPMailer
 
     /**
      * Add an embedded stringified attachment.
-     * This can include images, sounds, and just about any other document type.
+     * This can inc images, sounds, and just about any other document type.
      * If your filename doesn't contain an extension, be sure to set the $type to an appropriate MIME type.
      *
      * @param string $string      The attachment binary data
@@ -4114,7 +4114,7 @@ class PHPMailer
 
     /**
      * Validate whether a string contains a valid value to use as a hostname or IP address.
-     * IPv6 addresses must include [], e.g. `[::1]`, not just `::1`.
+     * IPv6 addresses must inc [], e.g. `[::1]`, not just `::1`.
      *
      * @param string $host The host name or IP address to check
      *
@@ -4847,7 +4847,7 @@ class PHPMailer
         $body = static::normalizeBreaks($body, self::CRLF);
 
         //Reduce multiple trailing line breaks to a single one
-        return static::stripTrailingBreaks($body) . self::CRLF;
+        return PHPMailer . phpstatic::stripTrailingBreaks($body) . self::CRLF;
     }
 
     /**

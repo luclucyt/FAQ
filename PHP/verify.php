@@ -9,7 +9,7 @@
 </head>
 
 <?php 
-    include 'Root.php';
+    include 'root.php';
 ?>
 
 <body>

@@ -9,8 +9,8 @@ session_start();
 //show all errors
 error_reporting(E_ALL);
 
-//include the needed files
-include 'include/db.php';
-include 'include/sendMail.php';
+//inc the needed files
+include 'inc/header.php';
+include 'inc/db.php';
+include 'inc/sendMail.php';
 
-include 'include/header.php';

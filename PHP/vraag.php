@@ -18,7 +18,7 @@
 </head>
 
 <?php 
-    include 'Root.php';
+    include 'root.php';
 ?>
 
 <body>
@@ -37,7 +37,7 @@
 
                 $sql = "SELECT * FROM vragen WHERE code = '$code'";
 
-                echo "<a href='../PHP/faq.php' class='back'><img src='../img/arrow.png'><span>Ga terug</span></a>";
+                echo "<a href='FAQ.php' class='back'><img src='../img/arrow.png' alt=''><span>Ga terug</span></a>";
 
                 if(isset($_SESSION['admin'])) {
                     if($_SESSION['admin'] == true){

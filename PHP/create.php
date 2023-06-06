@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="../CSS/root.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/create.css">
-
 </head>
 
 <?php
-    include 'Root.php';
+    include 'root.php';
 ?>
 
 <body>

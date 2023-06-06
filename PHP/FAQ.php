@@ -10,19 +10,18 @@
     <!-- CSS -->
     <link rel="stylesheet" href="../CSS/root.css">
     <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/FAQ.css">
+    <link rel="stylesheet" href="../CSS/faq.css">
 
     <!-- JS -->
     <script src="../JS/root.js" defer></script>
     <script src="../JS/FAQ.js" defer></script>
 </head>
 
-<?php 
-    include 'Root.php';
+<?php
+    include 'root.php';
 ?>
 
 <body>
-
     <div class="antwoord-wrapper">
         <div class="FAQ-filter-wrapper">
             <div>
