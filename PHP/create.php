@@ -1,3 +1,8 @@
+<?php
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -45,6 +50,7 @@
 
 <?php
 if(isset($_POST['submitVraag'])){
+
     //write the vraag to the database
     $vraag = $_POST['vraag'];
     $vraagOmschrijving = $_POST['vraagOmschrijving'];
@@ -78,7 +84,7 @@ if(isset($_POST['submitVraag'])){
         echo "Er is iets fout gegaan";
         exit();
     }
-
+//    echo "<script> alert('test')</script>";
     SendCodeToMail($mail, $vraag, $vraagID, $conn);
 }
 

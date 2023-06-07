@@ -22,6 +22,13 @@
 ?>
 
 <body>
+    <?php
+        if(isset($_SESSION['loggedIn'])){
+            if($_SESSION['loggedIn']){
+                echo "<h2 class='FAQ-loggedIn'>Welkom " . $_SESSION['name'] . "</h2>";
+            }
+        }
+    ?>
     <div class="antwoord-wrapper">
         <div class="FAQ-filter-wrapper">
             <div>

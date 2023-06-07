@@ -7,7 +7,10 @@ session_start();
 // session_unset();
 
 //show all errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 
 //inc the needed files
 include 'inc/header.php';

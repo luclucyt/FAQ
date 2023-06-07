@@ -26,7 +26,7 @@
         <div class="login-wrapper">
             <div>
                 <h1>Login:</h1>
-                <form action="" method="POST">
+                <form action="../test/loginSubmit.php" method="POST">
                     <input type="text" name="mail" placeholder="School Mail..."><br>
                     <input type="password" name="password" placeholder="Wachtwoord"><br>
 
@@ -35,19 +35,19 @@
             </div>
         </div>
 
-        <div class="registreer-wrapper">
-            <div>
-                <h1>Registreer:</h1>
-                <form action="" method="POST" class="registreer-form">
-                    <input type="text" name="naam" placeholder="Naam"><br>
-                    <input type="text" name="mail" placeholder="School Mail..."><br>
-                    <input type="password" name="password" placeholder="Wachtwoord"><br>
-                    <input type="password" name="password2" placeholder="Herhaal Wachtwoord"><br>
-
-                    <input type="submit" name="submitRegistreer" value="Registreer">
-                </form>
-            </div>
-        </div>
+<!--        <div class="registreer-wrapper">-->
+<!--            <div>-->
+<!--                <h1>Registreer:</h1>-->
+<!--                <form action="" method="POST" class="registreer-form">-->
+<!--                    <input type="text" name="naam" placeholder="Naam"><br>-->
+<!--                    <input type="text" name="mail" placeholder="School Mail..."><br>-->
+<!--                    <input type="password" name="password" placeholder="Wachtwoord"><br>-->
+<!--                    <input type="password" name="password2" placeholder="Herhaal Wachtwoord"><br>-->
+<!---->
+<!--                    <input type="submit" name="submitRegistreer" value="Registreer">-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
     </main>
 </body>
 </html>
