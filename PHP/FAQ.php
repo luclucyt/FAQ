@@ -87,6 +87,7 @@
 
                             $vraag = strip_tags($row['vraag']);
                             $antwoord = strip_tags($row['antwoord']);
+                            $antwoord = str_replace("Powered by Froala Editor", "", $antwoord);
 
                             echo "<h2 class='FAQ-vraag-vraag'>" . $vraag . "</h2>";
                             echo "<p class='FAQ-vraag-antwoord'>" . $antwoord . "</p>";
