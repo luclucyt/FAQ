@@ -65,17 +65,19 @@
 
         <?php
 
-            $isFirst = true;
+            $_SESSION['isFirst'] = true;
+
             function displayVragen($tags, $conn){
                 $sql = "SELECT * FROM vragen WHERE status = 'Beantwoord' AND public = '1' AND tags = '$tags' ORDER BY views";
                 $result = mysqli_query($conn, $sql);
+
 
                 $tags = strtolower($tags);
 
                 while ($row = mysqli_fetch_assoc($result)) {
                     // display the questions with the answer
                     //if isFirst == true then add the class FAQ-category-wrapper-first
-                    if($isFirst){
+                    if($_SESSION['isFirst']){
                         echo "<a href='vraag.php?code=" . $row['code'] . "' class=' FAQ-category-wrapper-BTN FAQ-category-wrapper-{$tags} FAQ-category-wrapper-first'>";
                         $isFirst = false;
                     } else {
@@ -92,7 +94,7 @@
                         echo "</div>";
                     echo "</a>";
 
-                    $isFirst = false;
+                    $_SESSION['isFirst'] = false;
                 }
             }
         ?>
