@@ -10,6 +10,24 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/login/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/login/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/login/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/login/vendor/illuminate/macroable" />
+      <path value="$PROJECT_DIR$/login/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/login/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/login/vendor/directorytree/ldaprecord" />
+      <path value="$PROJECT_DIR$/login/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/login/vendor/illuminate/conditionable" />
+      <path value="$PROJECT_DIR$/login/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/login/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/login/vendor/composer" />
+      <path value="$PROJECT_DIR$/login/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/login/vendor/illuminate/collections" />
+    </include_path>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>

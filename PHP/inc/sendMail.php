@@ -6,8 +6,12 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-    
-    function SetMailUp($SendMailTo){
+
+/**
+ * @throws Exception
+ */
+function SetMailUp($SendMailTo): PHPMailer
+    {
         //set up the mail
         $mail = new PHPMailer();
 
@@ -49,40 +53,29 @@
         $sql = "INSERT INTO verify (id, vraagID, mail, code) VALUES ('', '{$vraagID}', '{$SendMailTo}', '{$code}')";
         $result = mysqli_query($conn, $sql);
 
-        echo "<script> alert('test')</script>";
-
-        try {
-            $mail->send();
-            echo 'Message has been sent';
-        } catch (PHPMailer\PHPMailer\Exception $e) {
-            // Handle PHPMailer exception
-            echo "PHPMailer Exception: " . $e->getMessage();
-        } catch (Exception $e) {
-            // Handle other exceptions
-            echo "Exception: " . $e->getMessage();
+        if($mail->send()){
+            echo "
+                <script>
+                    document.getElementById('new-form-wrapper').innerHTML = `
+                        <div id='form-submit-new-wrapper'>
+                            <h2>Bedankt voor je vraag!</h2>
+                            <p>Er is een mail verstuurd naar: {$SendMailTo}</p>
+                            <p>Vul de code in die je hebt ontvangen (of klik op de mail in de link):</p>
+                            <form action='' method='POST'>
+                                <input type='text' name='code' placeholder='Code...'><br>
+                                <input type='submit' name='submitCode' value='Verstuur'>
+                            </form>
+                        </div>`;
+                </script>";
+        }else{
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
-//        if($mail->send()){
-//            echo "
-//                <script>
-//                    document.getElementById('new-form-wrapper').innerHTML = `
-//                        <div id='form-submit-new-wrapper'>
-//                            <h2>Bedankt voor je vraag!</h2>
-//                            <p>Er is een mail verstuurd naar: {$SendMailTo}</p>
-//                            <p>Vul de code in die je hebt ontvangen (of klik op de mail in de link):</p>
-//                            <form action='' method='POST'>
-//                                <input type='text' name='code' placeholder='Code...'><br>
-//                                <input type='submit' name='submitCode' value='Verstuur'>
-//                            </form>
-//                        </div>`;
-//                </script>";
-//        }else{
-//            echo 'Mailer Error: ' . $mail->ErrorInfo;
-//        }
 
         $mail->smtpClose();
     }
 
-    function SendLoginMail($SendMailTo, $conn){
+    function SendLoginMail($SendMailTo, $conn): void
+    {
         $mail = SetMailUp($SendMailTo);
 
         $mail->Subject = 'Test mail';
@@ -132,7 +125,8 @@
         $mail->smtpClose();
     }
 
-    function SendAnwerToMail($SendMailTo, $vraag, $antwoord, $code){
+    function SendAnwerToMail($SendMailTo, $vraag, $antwoord, $code): void
+    {
         $mail = SetMailUp($SendMailTo);
 
         $mail->Subject = 'Test mail';

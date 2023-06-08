@@ -2,7 +2,10 @@ body {
     width: 100%;
     overflow-x: hidden;
 }
-
+.fr-wrapper:first-child .show-placeholder{
+    display: none;
+    height: 0;
+}
 .vragen-wrapper {
     width: 40vh;
     margin: 1vh 5vw;

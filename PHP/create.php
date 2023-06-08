@@ -39,7 +39,13 @@
                 <option value="overig">Overig</option>
             </select>
 
-            <input type="email" name="mail" placeholder="School Mail" value="88875@glr.nl"><br>
+            <input type="email" name="mail" placeholder="School Mail"
+                <?php
+                    if(isset($_SESSION['mail'])){
+                        echo "value='{$_SESSION['mail']}'";
+                    }
+                ?>
+            ><br>
 
             <input type="submit" name="submitVraag" value="Verstuur">
         </form>
@@ -84,7 +90,6 @@ if(isset($_POST['submitVraag'])){
         echo "Er is iets fout gegaan";
         exit();
     }
-//    echo "<script> alert('test')</script>";
     SendCodeToMail($mail, $vraag, $vraagID, $conn);
 }
 

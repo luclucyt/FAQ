@@ -11,7 +11,7 @@ $targetPath = $targetDir . $fileName;
 // Check if the file was uploaded successfully
 if (move_uploaded_file($_FILES['file']['tmp_name'], $targetPath)) {
     $response = array(
-        'link' => '/img/antwoord/' . $fileName,
+        'link' => '../img/antwoord/' . $fileName,
         'title' => $fileName
     );
   

@@ -93,7 +93,13 @@
                     echo "<hr>";
                     
 
-                    echo "<p>" . $row['antwoord'] . "</p>";
+                    echo "<div class='antwoordText'>";
+
+                    $antwoord = $row['antwoord'];
+                    $antwoord = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', "", $antwoord);
+
+                        echo "<p>" . $antwoord . "</p>";
+                    echo "</div>";
                 }
             ?>
 

@@ -56,8 +56,13 @@
 
 
     <?php
-        if(!$_SESSION['admin']){
-            echo "Je bent geen docent";
+//        var_dump($_SESSION);
+        if (!isset($_SESSION['admin'])) {
+            if (!$_SESSION['admin']) {
+                echo "Je bent geen docent";
+                exit();
+            }
+            echo "je bent niet ingelogd";
             exit();
         }
 
@@ -178,7 +183,6 @@
             }
         });
 
-
     </script>
  
     <?php
@@ -206,6 +210,10 @@
 
             $vraagID = mysqli_real_escape_string($conn, $vraagID);
             $antwoord = mysqli_real_escape_string($conn, $antwoord);
+
+            echo "<script>alert('$antwoord');</script>";
+            $antwoord = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', " ", $antwoord);
+
             $isPublic = mysqli_real_escape_string($conn, $isPublic);
             $vraag = mysqli_real_escape_string($conn, $vraag);
             $tag = mysqli_real_escape_string($conn, $tag);
@@ -216,7 +224,7 @@
             $sql = "UPDATE vragen SET antwoord = '$antwoord' where vraagID = '$vraagID'"; 
             $result = mysqli_query($conn, $sql);
 
-            $sql = "UPDATE vragen SET beantwoordDoor = '" . $_SESSION['userName'] . "' where vraagID = '$vraagID'"; 
+            $sql = "UPDATE vragen SET beantwoordDoor = '" . $_SESSION['name'] . "' where vraagID = '$vraagID'";
             $result = mysqli_query($conn, $sql);
 
             $sql = "UPDATE vragen SET geantwoord = '" . date("Y-m-d") . "' where vraagID = '$vraagID'"; 
