@@ -38,6 +38,11 @@ $ad_suffix = '@ict.lab.locals';
 $password = $_POST['password'];
 
 try {
+    if($_SESSION['key'] != $_POST['key']) {
+        echo "You are not allowed to login";
+        $_SESSION['loggedIn'] = false;
+        exit();
+    }
     $connection->auth()->bind($user.$ad_suffix, $password);
 
     // Further bound operations...

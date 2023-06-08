@@ -27,6 +27,12 @@
             <div>
                 <h1>Login:</h1>
                 <form action="../login/loginSubmit.php" method="POST">
+                    <?php
+                        //genarete a session key
+                        $key = bin2hex(random_bytes(32));
+                        $_SESSION['key'] = $key;
+                        echo "<input type='hidden' name='key' value='" . $key . "'>";
+                    ?>
                     <input type="text" name="mail" placeholder="Gebruikersnaam"><br>
                     <input type="password" name="password" placeholder="Wachtwoord"><br>
 
