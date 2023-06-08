@@ -19,6 +19,7 @@
 
 <?php
     include 'root.php';
+    $_SESSION['isFirst'] = true;
 ?>
 
 <body>
@@ -64,9 +65,6 @@
         </main>
 
         <?php
-
-            $_SESSION['isFirst'] = true;
-
             function displayVragen($tags, $conn){
                 $sql = "SELECT * FROM vragen WHERE status = 'Beantwoord' AND public = '1' AND tags = '$tags' ORDER BY views";
                 $result = mysqli_query($conn, $sql);

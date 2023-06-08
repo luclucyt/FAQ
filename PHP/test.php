@@ -20,4 +20,3 @@ if (move_uploaded_file($_FILES['file']['tmp_name'], $targetPath)) {
 } else {
     echo 'Error uploading the file.';
 }
-?>
