@@ -98,3 +98,7 @@ body {
     word-wrap: normal;
     white-space: normal;
 }
+
+.fr-wrapper > div:first-child {
+    display: none; !important;
+}

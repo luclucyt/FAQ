@@ -163,13 +163,14 @@ main{
     border-radius: 0;
     box-shadow: none;
     cursor: pointer;
-    transition: none;
+    /*transition: none;*/
     padding: 0;
     display: flex;
     flex-direction: column;
     border: 1px solid #898989;
     border-bottom: 0;
     text-decoration: none;
+    transition: all 0.2s ease-in-out;
 }
 
 .FAQ-category-wrapper-first {
@@ -200,4 +201,9 @@ main{
     height: auto;
     background-color: transparent;
     display: block;
+}
+
+.vraag-icon{
+    width: 1em;
+    height: 1em;
 }

@@ -7,9 +7,6 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
 
-/**
- * @throws Exception
- */
 function SetMailUp($SendMailTo): PHPMailer
     {
         //set up the mail
@@ -40,7 +37,7 @@ function SetMailUp($SendMailTo): PHPMailer
         // generate a 6-digit code for the user to enter
         $code = rand(100000, 999999);
         $mail->Body = "Bedankt voor je vraag: '{$vraag}'' <br> Je code is: '{$code}'<br>
-        of klik op: <a href='http://localhost:3000/PHP/verify.php?code={$code}'>deze link om, de vraag te verirveren</a>";
+        of klik op: <a href='https://88875.stu.sd-lab.nl/FAQ/PHP/vraag.php?code={$code}'>deze link om, de vraag te verirveren</a>";
 
         //get VraagID from database
         $sql = "SELECT vraagID FROM vragen WHERE vraag = '{$vraag}' AND mail = '{$SendMailTo}'";
@@ -74,64 +71,22 @@ function SetMailUp($SendMailTo): PHPMailer
         $mail->smtpClose();
     }
 
-    function SendLoginMail($SendMailTo, $conn): void
-    {
-        $mail = SetMailUp($SendMailTo);
-
-        $mail->Subject = 'Test mail';
-
-        // generate a 6 digit code for the user to enter
-        $code = rand(100000, 999999);
-        $mail->Body = "Maak een account aan met deze code: '{$code}'";
-        
-        //get the userID from the database
-        $sql = "SELECT id FROM users WHERE mail = '{$SendMailTo}'";
-        $result = mysqli_query($conn, $sql);
-
-        while($row = mysqli_fetch_assoc($result)){
-            $userID = $row['id'];
-        }
-
-        //write the code to the database
-        $sql = "INSERT INTO userverify (id, userID, code) VALUES ('', '{$userID}', '{$code}')";
-        $result = mysqli_query($conn, $sql);
-
-        if($mail->send()){
-
-            echo '<script>document.getElementsByClassName("registreer-form")[0].innerHTML = `
-                    <div class="create-account-wrapper">
-                        <h2>Maak een account aan</h2>
-                        <p>Er is een mail verstuurd naar: ' . $SendMailTo . '</p>
-                        <p>Vul de code in die je hebt ontvangen:</p>
-                        
-                        <form action="" method="POST">
-                            <input type="text" name="code" placeholder="Code...">
-                            <input type="submit" name="userverify" value="Verstuur">
-                        </form>
-                    </div>`;
-                </script>';
-
-            echo 'Er is een mail verstuurd naar: ' . $SendMailTo . '<br>';
-            echo 'Vul de code in die je hebt ontvangen: <br>';
-            
-            echo '<form action="" method="POST">';
-                echo '<input type="text" name="code" placeholder="Code..."><br>';
-                echo '<input type="submit" name="userverify" value="Verstuur">';
-            echo '</form>';
-        }else{
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        }
-
-        $mail->smtpClose();
-    }
-
     function SendAnwerToMail($SendMailTo, $vraag, $antwoord, $code): void
     {
         $mail = SetMailUp($SendMailTo);
 
+        echo "<script>alert(`{$antwoord}`)</script>";
+        $antwoord = str_replace("Powered by", " ", $antwoord);
+        $antwoord = str_replace('https://www.froala.com/wysiwyg-editor?pb=1', " ", $antwoord);
+        $antwoord = str_replace('Froala Editor', " ", $antwoord);
+        echo "<script>alert(`{$antwoord}`)</script>";
+
+        //remove the last 4 characters from the string
+        $antwoord = substr($antwoord, 0, -100); //little more than 4, but hey, it works :)
+
         $mail->Subject = 'Test mail';
         $mail->Body = "Je vraag: '{$vraag}' is beantwoord met: '{$antwoord}'<br> 
-        <a href='http://localhost:3000/PHP/vraag.php?code={$code}'>Klik hier om naar de vraag te gaan</a>";
+        <a href='https://88875.stu.sd-lab.nl/FAQ/PHP/vraag.php?code={$code}'>Klik hier om naar de vraag te gaan</a>";
 
         $mail->send();            
     }
