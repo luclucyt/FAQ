@@ -1,6 +1,9 @@
+html {
+    background-color: #dae0e6;
+}
+
 body {
     overflow-x: hidden;
-    background-color: #dae0e6;
 }
 
 
@@ -166,6 +169,7 @@ main{
     flex-direction: column;
     border: 1px solid #898989;
     border-bottom: 0;
+    text-decoration: none;
 }
 
 .FAQ-category-wrapper-first {
