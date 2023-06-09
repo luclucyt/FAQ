@@ -26,7 +26,7 @@
     <?php
         if(isset($_SESSION['loggedIn'])){
             if($_SESSION['loggedIn']){
-                echo "<h2 class='FAQ-loggedIn'>Welkom " . $_SESSION['name'] . ",</h2>";
+                echo "<h2 class='FAQ-loggedIn'>Welkom " . $_SESSION['name'] . "</h2>";
             }
         }
     ?>
@@ -91,8 +91,8 @@
 
                             echo "<h2 class='FAQ-vraag-vraag'>" . $vraag . "</h2>";
                             echo "<p class='FAQ-vraag-antwoord'>" . $antwoord . "</p>";
-                            echo "<img src='../img/tag.png' alt='' class='vraag-icon'> | " . $tags . "<br>";
-                            echo "<img src='../img/eye.png' alt='' class='vraag-icon'> | " . $views;
+                            echo "<p>Tags: " . $tags . "</p>";
+                            echo "<p>Views: " . $views . "</p>";
 
                         echo "</div>";
                     echo "</a>";
