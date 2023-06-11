@@ -6,6 +6,11 @@ body {
     overflow-x: hidden;
 }
 
+.FAQ-loggedIn{
+    text-align: center;
+    width: 100vw;
+    line-height: .75em;
+}
 
 .FAQ-filter-wrapper {
     width: 100%;
@@ -22,7 +27,7 @@ body {
 .FAQ-filter-wrapper div {
     background-color: var(--primary-color);
     padding: 2.5vh 13.5vw;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     box-shadow: 10px 10px 9px 0px rgba(120, 120, 120, 1);
     margin: 3vh 0;
 }
@@ -31,7 +36,7 @@ body {
     width: 100%;
     height: 5vh;
     margin-top: 1vh;
-    border-radius: 4px;
+    /*border-radius: 4px;*/
     color: var(--text);
     font-size: 2vh;
     font-weight: bold;
@@ -64,7 +69,7 @@ body {
 textarea {
     width: 100%;
     height: 20vh;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     border: 1px solid var(--text);
     background-color: var(--background);
     color: var(--text);
@@ -79,7 +84,7 @@ textarea {
 select {
     width: 100%;
     height: 5vh;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     border: 1px solid var(--text);
     background-color: var(--background);
     color: var(--text);
@@ -131,7 +136,7 @@ main{
     background-color: rgb(200, 200, 200);
     box-shadow: 15px 15px 9px 0px rgba(150, 150, 150, 1);
     scale: 1.01;
-}
+/*}*/
 
 .FAQ-vraag-vraag{
     -webkit-line-clamp: 1;
@@ -148,7 +153,7 @@ main{
     overflow: hidden;
     word-break: break-all;
 }
-
+/*
 .FAQ-vraag-wrapper{
     width: 15vw;
     height: 25vh;
@@ -156,11 +161,17 @@ main{
     display: inline-block;
 } */
 
+.FAQ-vraag-views-icon{
+    /*width: 2vh;*/
+    height: 1em
+    /*margin-right: 0.5vw;*/
+}
+
 .FAQ-category-wrapper-BTN {
     width: 100%;
     height: auto;
     background-color: #fff;
-    border-radius: 0;
+    /*border-radius: 0;*/
     box-shadow: none;
     cursor: pointer;
     transition: none;
@@ -173,8 +184,8 @@ main{
 }
 
 .FAQ-category-wrapper-first {
-    border-top-left-radius: 8.132435678px;
-    border-top-right-radius: 8.132435678px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .FAQ-category-wrapper-BTN:hover{
@@ -187,7 +198,7 @@ main{
 .FAQ-vraag-vraag,
 .FAQ-vraag-antwoord {
     -webkit-line-clamp: 1;
-    display: block;
+    /*display: block;*/
     padding: 0;
 }
 
@@ -200,4 +211,8 @@ main{
     height: auto;
     background-color: transparent;
     display: block;
+}
+
+*{
+    border-radius: 0 !important;
 }

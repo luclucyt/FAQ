@@ -7,13 +7,13 @@ header{
     position: sticky;
     top: 0;
     z-index: 100;
+    background-image: url('https://sd-lab.nl/wp-content/uploads/2022/05/GLR-Mediatechnologie-Software-Developer-Mirrrored.webp');
     box-shadow: 0px 4px 10px 0px rgba(10, 10, 10, 0.2);
 }
 
 header > nav {
-    width: 100%;
+    width: 60%;
     height: 12.5vh;
-    background-image: url('https://sd-lab.nl/wp-content/uploads/2022/05/GLR-Mediatechnologie-Software-Developer-Mirrrored.webp');
     background-position: center 12%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -21,6 +21,11 @@ header > nav {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    margin: auto auto;
+}
+
+header > nav > a > img{
+    height: 10vh;
 }
 
 header > nav > ul{
@@ -36,19 +41,19 @@ header > nav > ul > li{
 }
 
 header > nav > ul > li > a{
-    color: var(--text);
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: bold;
-    background-color: rgba(206, 206, 206, 0.75);
+    background-color: rgba(221,221,221,0.3);
     padding: 10px 20px;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
 
     transition: all 0.3s ease-in-out;
 }
 
-header > nav > ul > li > a:hover{
-    background-color: rgba(206, 206, 206, 1);
+header > nav > ul > li > a:hover {
+    background-color: rgba(221,221,221,0.5);
 }
 
 .menu {

@@ -58,7 +58,7 @@
                     echo "<h1 class='vraag'>" . $row['vraag'] . "</h1>";
                     echo "<div class='info-wrapper'>";
                         echo "<div>";
-                            echo "|<img src='../img/user.png' alt='user' class='user img'>| ";
+                            echo "<img src='../img/user.png' alt='user' class='user img'> ";
                             if($row['beantwoordDoor'] == ""){
                                 echo "Nog niet beantwoord";
                             }
@@ -68,12 +68,12 @@
                         echo "</div>";
 
                         echo "<div>";
-                            echo "|<img src='../img/calendar.png' alt='antwoord' class='antwoord img'>| ";
+                            echo "<img src='../img/calendar.png' alt='antwoord' class='antwoord img'> ";
                             echo $row['aangemaakt'];
                         echo "</div>";
 
                         echo "<div>";
-                            echo "|<img src='../img/pen.png' alt='aangemaakt' class='aangemaakt img'>| ";
+                            echo "<img src='../img/pen.png' alt='aangemaakt' class='aangemaakt img'> ";
                             if($row['geantwoord'] == "0000-00-00"){
                                 echo "Nog niet beantwoord";
                             }
@@ -83,7 +83,7 @@
                         echo "</div>";
 
                         echo "<div>";
-                            echo "|<img src='../img/eye.png' alt='views' class='views img'>| ";
+                            echo "<img src='../img/eye.png' alt='views' class='views img'> ";
                             echo ($row['views'] + 1) . " keer bekeken";
                         echo "</div>";
 

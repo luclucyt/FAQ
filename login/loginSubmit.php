@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 session_start();
 require __DIR__ . '/vendor/autoload.php';
 
@@ -37,12 +41,14 @@ else {
 $ad_suffix = '@ict.lab.locals';
 $password = $_POST['password'];
 
+
 try {
     if($_SESSION['key'] != $_POST['key']) {
         echo "You are not allowed to login";
         $_SESSION['loggedIn'] = false;
         exit();
     }
+
     $connection->auth()->bind($user.$ad_suffix, $password);
 
     // Further bound operations...
@@ -77,8 +83,9 @@ try {
         $_SESSION['name'] = $ldapuser['displayname'][0];
         $_SESSION['loggedIn'] = true;
 //        echo "<script>alert('You are logged in');</script>";
-//        die("You are logged in");
         header("Location: ../PHP/FAQ.php");
+
+        die("You are logged in");
 
     } else {
         echo "You are not allowed to login";

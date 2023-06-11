@@ -91,8 +91,8 @@
 
                             echo "<h2 class='FAQ-vraag-vraag'>" . $vraag . "</h2>";
                             echo "<p class='FAQ-vraag-antwoord'>" . $antwoord . "</p>";
-                            echo "<p>Tags: " . $tags . "</p>";
-                            echo "<p>Views: " . $views . "</p>";
+                            echo "<img src='../img/tag.png' alt='' class='FAQ-vraag-views-icon'>  $tags <br>";
+                            echo "<img src='../img/eye.png' alt='' class='FAQ-vraag-views-icon'>  $views";
 
                         echo "</div>";
                     echo "</a>";
@@ -102,6 +102,8 @@
             }
         ?>
     </div>
+
+    <p>made by Yannick Elstak & Lucas van Briemen</p>
 
 </body>
 </html>
