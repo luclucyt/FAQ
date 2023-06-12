@@ -56,7 +56,6 @@
 
 
     <?php
-//        var_dump($_SESSION);
         if (!isset($_SESSION['admin'])) {
             if (!$_SESSION['admin']) {
                 echo "Je bent geen docent";

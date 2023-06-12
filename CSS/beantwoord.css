@@ -98,3 +98,11 @@ body {
     word-wrap: normal;
     white-space: normal;
 }
+
+div.fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
+    display: none; !important;
+    height: 0; !important;
+    overflow: hidden; !important;
+    opacity: 0;
+    /*margin-top: -100%; !important;*/
+}

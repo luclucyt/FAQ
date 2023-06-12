@@ -28,7 +28,7 @@ body {
     background-color: var(--primary-color);
     padding: 2.5vh 13.5vw;
     /*border-radius: 10px;*/
-    box-shadow: 10px 10px 9px 0px rgba(120, 120, 120, 1);
+    /*box-shadow: 10px 10px 9px 0px rgba(120, 120, 120, 1);*/
     margin: 3vh 0;
 }
 
@@ -98,8 +98,15 @@ select {
 
 .FAQ-create-BTN{
     float: right;
-    color: blue;
-    margin-top: 0.5vh;
+    color: white;
+
+    background-color: rgba(221, 221, 221 , 0.3);
+    padding: 0.5vh 1vw;
+    transition: all 0.5s;
+    margin-top: 1vh;
+}
+.FAQ-create-BTN:hover{
+    background-color: rgba(221, 211, 221, 0.5);
 }
 
 .FAQ-header{
@@ -139,11 +146,11 @@ main{
 /*}*/
 
 .FAQ-vraag-vraag{
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
 }
 
 .FAQ-vraag-antwoord{
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 3;
 }
 
 .FAQ-vraag-antwoord, .FAQ-vraag-vraag{
@@ -153,13 +160,6 @@ main{
     overflow: hidden;
     word-break: break-all;
 }
-/*
-.FAQ-vraag-wrapper{
-    width: 15vw;
-    height: 25vh;
-    background-color: red;
-    display: inline-block;
-} */
 
 .FAQ-vraag-views-icon{
     /*width: 2vh;*/
@@ -191,7 +191,7 @@ main{
 .FAQ-category-wrapper-BTN:hover{
     border-bottom: #898989 1px solid;
     background-color: #e8e8e8;
-    box-shadow: 15px 15px 9px 0px rgba(150, 150, 150, 1);
+    /*box-shadow: 15px 15px 9px 0px rgba(150, 150, 150, 1);*/
     scale: 1.01;
 }
 

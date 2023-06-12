@@ -82,7 +82,6 @@ try {
         $_SESSION['mail'] = $user . "@glr.nl";
         $_SESSION['name'] = $ldapuser['displayname'][0];
         $_SESSION['loggedIn'] = true;
-//        echo "<script>alert('You are logged in');</script>";
         header("Location: ../PHP/FAQ.php");
 
         die("You are logged in");
