@@ -35,6 +35,9 @@ function SetMailUp($SendMailTo): PHPMailer
     {
         $mail = SetMailUp($SendMailTo);
 
+        //remove the last 100 characters from the string
+        $antwoord = substr($antwoord, 0, -150);
+
         $mail->Subject = 'Code voor vraag op SD-lab';
 
         // generate a 6-digit code for the user to enter
@@ -74,59 +77,11 @@ function SetMailUp($SendMailTo): PHPMailer
         $mail->smtpClose();
     }
 
-    function SendLoginMail($SendMailTo, $conn): void
-    {
-        $mail = SetMailUp($SendMailTo);
-
-        $mail->Subject = 'Test mail';
-
-        // generate a 6 digit code for the user to enter
-        $code = rand(100000, 999999);
-        $mail->Body = "Maak een account aan met deze code: '{$code}'";
-        
-        //get the userID from the database
-        $sql = "SELECT id FROM users WHERE mail = '{$SendMailTo}'";
-        $result = mysqli_query($conn, $sql);
-
-        while($row = mysqli_fetch_assoc($result)){
-            $userID = $row['id'];
-        }
-
-        //write the code to the database
-        $sql = "INSERT INTO userverify (id, userID, code) VALUES ('', '{$userID}', '{$code}')";
-        $result = mysqli_query($conn, $sql);
-
-        if($mail->send()){
-
-            echo '<script>document.getElementsByClassName("registreer-form")[0].innerHTML = `
-                    <div class="create-account-wrapper">
-                        <h2>Maak een account aan</h2>
-                        <p>Er is een mail verstuurd naar: ' . $SendMailTo . '</p>
-                        <p>Vul de code in die je hebt ontvangen:</p>
-                        
-                        <form action="" method="POST">
-                            <input type="text" name="code" placeholder="Code...">
-                            <input type="submit" name="userverify" value="Verstuur">
-                        </form>
-                    </div>`;
-                </script>';
-
-            echo 'Er is een mail verstuurd naar: ' . $SendMailTo . '<br>';
-            echo 'Vul de code in die je hebt ontvangen: <br>';
-            
-            echo '<form action="" method="POST">';
-                echo '<input type="text" name="code" placeholder="Code..."><br>';
-                echo '<input type="submit" name="userverify" value="Verstuur">';
-            echo '</form>';
-        }else{
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        }
-
-        $mail->smtpClose();
-    }
 
     function SendAnwerToMail($SendMailTo, $vraag, $antwoord, $code): void
     {
+        $antwoord = substr($antwoord, 0, -150);
+
         $mail = SetMailUp($SendMailTo);
 
         $mail->Subject = 'Test mail';
