@@ -3,7 +3,9 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
+if(!isset($_POST['mail']) || !isset($_POST['password'])) {
+    header("Location: ../PHP/login.php");
+}
 require __DIR__ . '/vendor/autoload.php';
 
 use LdapRecord\Container;
@@ -12,13 +14,19 @@ use LdapRecord\Models\Entry;
 use LdapRecord\Models\ActiveDirectory\User;
 
 // Create a new connection:
-$connection = new Connection([
-    'hosts' => ['dc01.ict.lab.locals', 'dc02.ict.lab.locals'],
-    'port' => 389,
-    'base_dn' => 'dc=ict,dc=lab,dc=locals',
-    'username' => null,
-    'password' => null,
-]);
+try {
+    $connection = new Connection([
+        'hosts' => ['dc01.ict.lab.locals', 'dc02.ict.lab.locals'],
+        'port' => 389,
+        'base_dn' => 'dc=ict,dc=lab,dc=locals',
+        'username' => null,
+        'password' => null,
+    ]);
+} catch (\LdapRecord\Configuration\ConfigurationException $e) {
+    $_SESSION['loggedIn'] = false;
+    header("Location: ../PHP/login.php");
+    exit();
+}
 
 try {
     $connection->connect();
@@ -42,6 +50,7 @@ $ad_suffix = '@ict.lab.locals';
 $password = $_POST['password'];
 
 
+
 try {
     if($_SESSION['key'] != $_POST['key']) {
         echo "You are not allowed to login";
@@ -56,7 +65,22 @@ try {
         ->where('samaccountname', '=', $user)
         ->firstOrFail();
 
-    $userGroups = $ldapuser['memberof'];
+
+//    $userGroups = $ldapuser['memberof'];
+
+    try {
+        if (isset($ldapuser['memberof'])) {
+            $userGroups = $ldapuser['memberof'];
+        } else {
+            throw new Exception("Invalid user groups");
+        }
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        $_SESSION['loggedIn'] = false;
+        header("Location: ../PHP/login.php");
+        exit();
+    }
+
 
     $allowed = [
         'CN=Docenten MT,OU=Docenten,DC=ict,DC=lab,DC=locals',
