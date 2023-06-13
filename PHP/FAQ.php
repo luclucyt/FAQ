@@ -15,12 +15,16 @@ function displayVragen($tags, $conn)
 
 
     $tags = strtolower($tags);
+    //make the first letter uppercase
+    $tags = ucfirst($tags);
 
     ?>
     <div class='FAQ-category-wrapper active FAQ-category-wrapper-<?=$tags?>'>
         <h1 class='FAQ-category-title'><?=$tags?></h1>
 
         <?php
+
+        $tags = strtolower($tags);
         while ($row = mysqli_fetch_assoc($result)) {
 
             $vraag = strip_tags($row['vraag']);
