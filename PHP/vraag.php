@@ -8,6 +8,7 @@
     <title>Antwoord FAQ || sd-lab</title>
 
     <!-- CSS -->
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="../CSS/root.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/vraag.css">

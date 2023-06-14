@@ -1,16 +1,37 @@
 body {
     width: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
+}
+
+.filter-vragen{
+    /*position: absolute;*/
+    width: 22vw;
+    margin-left: 1vw;
+    margin-top: 1vh;
+    height: 7vh;
+    padding: 0 1vw;
+    border: 1px solid var(--text);
+    background-color: var(--background);
+    color: var(--text);
+    font-size: 2vh;
+    font-weight: bold;
+    resize: none;
+}
+
+hr{
+    width: 25vw;
+    margin-left: -1px;
+    height: 1px;
 }
 .fr-wrapper:first-child .show-placeholder{
     display: none;
     height: 0;
 }
 .vragen-wrapper {
-    width: 40vh;
-    margin: 1vh 5vw;
+    width: 25vw;
+    margin: -1vh 0 0 0;
 
-    border-right: 1px solid var(--secondary-color);
+    border-right: 2px solid var(--secondary-color);
 
     min-height: 80vh;
     max-height: 80vh;
@@ -105,4 +126,17 @@ div.fr-wrapper a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
     overflow: hidden; !important;
     opacity: 0;
     /*margin-top: -100%; !important;*/
+}
+
+.fr-box.fr-basic .fr-element{
+    height: 50vh;
+    overflow: auto;
+}
+
+#categorie{
+    margin-top: 1vh;
+    border: 1px solid var(--text);
+    background-color: var(--background);
+    color: var(--text);
+    resize: none;
 }

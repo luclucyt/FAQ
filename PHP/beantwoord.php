@@ -36,7 +36,7 @@
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
 
 
-    <select>
+    <select class="filter-vragen">
         <option value="">Alles</option>
         <option value="algemeen">Algemeen</option>
         <option value="techonogie">Techonogie</option>
@@ -45,6 +45,8 @@
         <option value="activiteiten">Activiteiten</option>
         <option value="overig">Overig</option>
     </select>
+
+    <hr>
 
     <script>
         let vragen = document.getElementsByClassName('beantwoordVraag');
@@ -89,13 +91,8 @@
         $total = mysqli_num_rows($result);
 
         //get all questions that are not answered in order of oldest to newest
-        $sql = "SELECT * FROM vragen WHERE status = 'Ingediend' ORDER BY 'vraagID' LIMIT 25 OFFSET $offset";
+        $sql = "SELECT * FROM vragen WHERE status = 'Ingediend' ORDER BY 'vraagID'";
         $result = mysqli_query($conn, $sql);
-
-        //if no questions are found
-        if(mysqli_num_rows($result) == 0){
-            echo "Geen vragen gevonden";
-        }
 
         
         echo "<div class='vragen-wrapper'>";
@@ -109,20 +106,6 @@
                 echo '</a>';
             }
 
-
-            // Display next and previous page links if needed
-            $totalPages = ceil($total / 25); // Calculate total pages
-            if ($totalPages > 1) {
-                echo "<div class='pagination'>";
-                if ($page > 1) {
-                    echo "<a href='?page=" . ($page - 1) . "' class='prev'>Vorige pagina</a>";
-                }
-                if ($page < $totalPages) {
-                    echo "<a href='?page=" . ($page + 1) . "' class='next'>Volgende pagina</a>";
-                }
-                echo "</div>";
-            }
-
         echo "</div>";
     ?>
 
@@ -134,8 +117,8 @@
 
         <input type="text" name="veranderVraag" placeholder="Verander vraag..." class="veranderVraag"><br>
         
-        <label for="isPublic">Publiek?</label>
-        <input type="checkbox" name="isPublic" value="0" id="isPublic">
+        <label for="isPublic">Openbaar: </label>
+        <input type="checkbox" name="isPublic" value="0" id="isPublic"><br>
 
         <label for="categorie">Categorie:</label>
         <select name="categorie" id="categorie">
@@ -145,7 +128,7 @@
             <option value="Cijfers">Cijfers</option>
             <option value="Activiteiten">Activiteiten</option>
             <option value="Overig">Overig</option>
-        </select>
+        </select><br>
         
         <textarea name="antwoord" placeholder="Antwoord..." required="required" id="editor"></textarea>
         
@@ -230,7 +213,12 @@
             $sql = "UPDATE vragen SET antwoord = '$antwoord' where vraagID = '$vraagID'"; 
             $result = mysqli_query($conn, $sql);
 
-            $sql = "UPDATE vragen SET beantwoordDoor = '" . $_SESSION['name'] . "' where vraagID = '$vraagID'";
+            $name = $_SESSION['name'];
+
+            //retrive everything after the first space (the last name)
+            $name = substr($name, strpos($name, " ") + 1);
+
+            $sql = "UPDATE vragen SET beantwoordDoor = '" . $name . "' where vraagID = '$vraagID'";
             $result = mysqli_query($conn, $sql);
 
             $sql = "UPDATE vragen SET geantwoord = '" . date("Y-m-d") . "' where vraagID = '$vraagID'"; 

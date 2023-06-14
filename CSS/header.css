@@ -4,12 +4,11 @@ header{
     width: 100vw;
     display: flex;
     align-items: center;
-    /*position: sticky;*/
+    position: sticky;
     top: 0;
     z-index: 100;
     background-image: url('https://sd-lab.nl/wp-content/uploads/2022/05/GLR-Mediatechnologie-Software-Developer-Mirrrored.webp');
     box-shadow: 0px 4px 10px 0px rgba(10, 10, 10, 0.2);
-    position: fixed;
 }
 
 header > nav {

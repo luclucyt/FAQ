@@ -19,7 +19,7 @@ function displayVragen($tags, $conn)
     $tags = ucfirst($tags);
 
     ?>
-    <div class='FAQ-category-wrapper active FAQ-category-wrapper-<?=$tags?>'>
+    <div class='FAQ-category-wrapper FAQ-category-wrapper-<?=$tags?> active'>
         <h1 class='FAQ-category-title'><?=$tags?></h1>
 
         <?php
