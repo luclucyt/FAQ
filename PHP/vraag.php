@@ -47,14 +47,16 @@
                         $result = mysqli_query($conn, $sql);
                         $row = mysqli_fetch_assoc($result);
 
-                        $code = $row['code'];
-                        
-                        echo "<a href='../PHP/beantwoord.php?code={$code}&edit=1' class='edit'><img src='../img/pen.png'></a>";                    
+                        if(isset($row['code'])) {
+
+                            $code = $row['code'];
+
+                            echo "<a href='../PHP/beantwoord.php?code={$code}&edit=1' class='edit'><img src='../img/pen.png'></a>";
+                        }
                     }
                 }
 
                 $result = mysqli_query($conn, $sql);
-
                 while($row = mysqli_fetch_assoc($result)){
                     echo "<h1 class='vraag'>" . $row['vraag'] . "</h1>";
                     echo "<div class='info-wrapper'>";
@@ -96,8 +98,8 @@
 
                     echo "<div class='antwoordText'>";
 
-                    $antwoord = $row['antwoord'];
-                    $antwoord = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', "", $antwoord);
+                        $antwoord = $row['antwoord'];
+                        $antwoord = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', "", $antwoord);
 
                         echo "<p>" . $antwoord . "</p>";
                     echo "</div>";
@@ -113,9 +115,7 @@
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
 
-                $views = $row['views'];
-                $views++;
-
+                $views = $row['views'] ?? 0;
                 $sql = "UPDATE vragen SET views = '$views' WHERE code = '$code'";
                 mysqli_query($conn, $sql);
             ?>

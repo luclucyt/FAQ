@@ -65,26 +65,6 @@
 
 
     <?php
-        if (!isset($_SESSION['admin'])) {
-            if (!$_SESSION['admin']) {
-                echo "Je bent geen docent";
-                exit();
-            }
-            echo "je bent niet ingelogd";
-            exit();
-        }
-
-        if(isset($_GET['page'])){
-            $page = $_GET['page'];
-        }
-        else{
-            $page = 1;
-        }
-
-
-        $offset = ($page - 1) * 25;
-
-
         //check how many questions are not answered
         $sql = "SELECT vraagID FROM vragen WHERE status = 'Ingediend'";
         $result = mysqli_query($conn, $sql);
@@ -200,7 +180,6 @@
             $vraagID = mysqli_real_escape_string($conn, $vraagID);
             $antwoord = mysqli_real_escape_string($conn, $antwoord);
 
-            echo "<script>alert('$antwoord');</script>";
             $antwoord = str_replace('<p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>', " ", $antwoord);
 
             $isPublic = mysqli_real_escape_string($conn, $isPublic);
