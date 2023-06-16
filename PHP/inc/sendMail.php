@@ -34,10 +34,7 @@ function SetMailUp($SendMailTo): PHPMailer
     function SendCodeToMail($SendMailTo, $vraag, $vraagID, $conn): void
     {
         $mail = SetMailUp($SendMailTo);
-
-        //remove the last 100 characters from the string
-        $antwoord = substr($antwoord, 0, -150);
-
+        
         $mail->Subject = 'Code voor vraag op SD-lab';
 
         // generate a 6-digit code for the user to enter

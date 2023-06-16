@@ -35,11 +35,11 @@ function filterFAQ(){
     filterSelect = filterSelect.toLowerCase();
 
     for (let i = 0; i < FAQcategory.length; i++) {
-        if(FAQcategory[i].querySelector('.FAQ-category-title').innerHTML.toLowerCase() === filterSelect) {
-            FAQcategory[i].classList.add("active");
-        }else {
-            FAQcategory[i].classList.remove("active");
-        }
+       if (FAQcategory[i].querySelector('.FAQ-category-title').innerHTML.toLowerCase() === filterSelect) {
+           FAQcategory[i].classList.add("active");
+       } else {
+           FAQcategory[i].classList.remove("active");
+       }
     }
     // for (let i = 0; i < FAQ.length; i++) {
     //     if(FAQ[i].parentElement.classList.contains("active")) {
