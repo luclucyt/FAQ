@@ -22,6 +22,22 @@
     //genarete a session key
     $key = bin2hex(random_bytes(32));
     $_SESSION['key'] = $key;
+
+
+    if(isset($_SESSION['mail']) && isset($_SESSION['password'])){
+        $mail = $_SESSION['mail'];
+        $password = $_SESSION['password'];
+    }else{
+        $mail = "";
+        $password = "";
+    }
+
+    if(isset($_SESSION['error'])){
+        $error = $_SESSION['error'];
+        unset($_SESSION['error']);
+    }else{
+        $error = "";
+    }
 ?>
 
 <body>
@@ -32,8 +48,10 @@
                 <form action="../login/loginSubmit.php" method="POST">
                     <input type='hidden' name='key' value='<?= $key ?>'>
                     
-                    <input type="text" name="mail" placeholder="Gebruikersnaam"><br>
-                    <input type="password" name="password" placeholder="Wachtwoord"><br>
+                    <input type="text" name="mail" placeholder="012345@glr.nl" value="<?= $mail ?>"><br>
+                    <input type="password" name="password" placeholder="School Wachtwoord" value="<?= $password ?>"><br>
+
+                    <?= $error ?>
 
                     <input type="submit" name="submitLogin" value="Login">
                 </form>

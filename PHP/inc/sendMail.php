@@ -81,7 +81,7 @@ function SetMailUp($SendMailTo): PHPMailer
 
         $mail = SetMailUp($SendMailTo);
 
-        $mail->Subject = 'Test mail';
+        $mail->Subject = 'Vraag Beantwoord';
         $mail->Body = "Je vraag: '{$vraag}' is beantwoord met: '{$antwoord}'<br> 
         <a href='https://faq.sd-lab.nl/PHP/vraag.php?code={$code}'>Klik hier om naar de vraag te gaan</a>";
 

@@ -1,9 +1,10 @@
 <?php
+
 session_start();
 
-if(!isset($_POST['mail']) || !isset($_POST['password'])) {
-    header("Location: ../PHP/login.php");
-}
+$_SESSION['mail'] = $_POST['mail'];
+$_SESSION['password'] = $_POST['password'];
+
 require __DIR__ . '/vendor/autoload.php';
 
 use LdapRecord\Container;
@@ -35,7 +36,9 @@ try {
     echo $error->getErrorCode();
     echo $error->getErrorMessage();
     echo $error->getDiagnosticMessage();
+    die();
 }
+
 
 if(str_contains($_POST['mail'], '@glr.nl')) {
     $user = str_replace('@glr.nl', '', $_POST['mail']);
@@ -46,7 +49,6 @@ else {
 
 $ad_suffix = '@ict.lab.locals';
 $password = $_POST['password'];
-
 
 
 try {
@@ -63,61 +65,28 @@ try {
         ->where('samaccountname', '=', $user)
         ->firstOrFail();
 
-
-//    $userGroups = $ldapuser['memberof'];
-
-    try {
-        if (isset($ldapuser['memberof'])) {
-            $userGroups = $ldapuser['memberof'];
-        } else {
-            throw new Exception("Invalid user groups");
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage();
-        $_SESSION['loggedIn'] = false;
-        header("Location: ../PHP/login.php");
-        exit();
+    if(str_contains($user, '@glr.nl')) {
+        $user = str_replace('@glr.nl', '', $user);
     }
 
-
-    $allowed = [
-        'CN=Docenten MT,OU=Docenten,DC=ict,DC=lab,DC=locals',
-        'CN=Docenten,OU=Docenten,DC=ict,DC=lab,DC=locals',
-        'CN=studenten,OU=DL groepen,DC=ict,DC=lab,DC=locals',
-    ];
-
-    // Normalize the group distinguished names and determine if
-    // the user is a member of any of the allowed groups:
-    $difference = array_intersect(
-        array_map('strtolower', $userGroups),
-        array_map('strtolower', $allowed)
-    );
-
-    if (count($difference) > 0) {
-
-        //if it is a Docent give it admin rights
-        if (in_array('CN=Docenten,OU=Docenten,DC=ict,DC=lab,DC=locals', $difference)) {
-            $_SESSION['admin'] = true;
-        } else {
-            $_SESSION['admin'] = true; //CHANGE THIS TO FALSE WHEN DONE TESTING
-        }
-        $_SESSION['mail'] = $user . "@glr.nl";
-        $_SESSION['name'] = $ldapuser['displayname'][0];
-        $_SESSION['loggedIn'] = true;
-        header("Location: ../PHP/FAQ.php");
-
-        die("You are logged in");
-
-    } else {
-        echo "You are not allowed to login";
-        $_SESSION['loggedIn'] = false;
-        header("Location: ../PHP/login.php");
+    //if the user is a number it is a student (no admin rights)
+    if(is_numeric($user) || str_contains($user, 'intake')) {
+        $_SESSION['admin'] = false;
     }
-    exit();
+    else {
+        $_SESSION['admin'] = true;
+    }
 
+    $_SESSION['mail'] = $user . "@glr.nl";
+    $_SESSION['name'] = $ldapuser['displayname'][0];
+    $_SESSION['loggedIn'] = true;
+    header("Location: ../PHP/FAQ.php");
+
+    die("You are logged in");
 } catch (Exception $e) {
     echo $e->getMessage();
     $_SESSION['loggedIn'] = false;
+    $_SESSION['error'] = "Gebruikersnaam of wachtwoord is onjuist";
     header("Location: ../PHP/login.php");
     exit();
 }

@@ -47,7 +47,7 @@ hr{
 }
 
 .vraag-wrapper h1:hover {
-    max-height: 10vh;
+    max-height: 5vh;
     overflow: auto;
     white-space: normal;
     border-bottom: 1px solid var(--secondary-color);

@@ -26,17 +26,17 @@
         //update the status of the question to answered
         $sql = "UPDATE vragen SET status = 'Ingediend' WHERE vraagID = '$vraagID'";
         $result = mysqli_query($conn, $sql);
-        
-        $sql = "DELETE FROM verify WHERE code = '$code'";
-        $result = mysqli_query($conn, $sql);
 
         $sql = "SELECT * FROM vragen where vraagID = '$vraagID'";
         $result = mysqli_query($conn, $sql);
+
+
         while($row = mysqli_fetch_assoc($result)){
-            $code = $row['code'];
+            $vraagCode = $row['code'];
+            echo "<br>Code: " . $vraagCode;
         }
 
-        header("Location: ../PHP/vraag.php?code=$code");
+        header("Location: ../PHP/vraag.php?code=$vraagCode");
     ?>    
 </body>
 </html>

@@ -41,7 +41,7 @@
                 echo "<a href='FAQ.php' class='back'><img src='../img/arrow.png' alt=''><span>Ga terug</span></a>";
 
                 if(isset($_SESSION['admin'])) {
-                    if($_SESSION['admin'] == true){
+                    if($_SESSION['admin']){
 
                         $sql = "SELECT * FROM vragen WHERE code = '$code'";
                         $result = mysqli_query($conn, $sql);

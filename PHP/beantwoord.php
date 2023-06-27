@@ -78,6 +78,10 @@
         echo "<div class='vragen-wrapper'>";
             //loop through all questions (if any) and display them
             while($row = mysqli_fetch_assoc($result)){
+                //remove html injection (like a script tag doesnt execute)
+                $row['vraag'] = htmlspecialchars($row['vraag']);
+                $row['omschrijving'] = htmlspecialchars($row['omschrijving']);
+                $row['mail'] = htmlspecialchars($row['mail']);
                 echo '<a class="beantwoordVraag" data-tag="' . $row['tags'] . '" data-vraagId="'. $row['vraagID'] . '" data-vraag="' . $row['vraag'] . '" data-omschrijving="' . $row['omschrijving'] . '">';
                     echo "<div class='vraag-wrapper'>";
                         echo "<h1>" . $row['vraag'] . "</h1>";
